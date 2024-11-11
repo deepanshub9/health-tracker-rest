@@ -53,12 +53,12 @@ class UserDAO {
         }
     }
 
-    fun save(user: User) : Int?{
+    fun save(user: User){
         return transaction {
             Users.insert {
                 it[name] = user.name
                 it[email] = user.email
-            } get Users.id
+            }
         }
     }
 
@@ -72,15 +72,5 @@ class UserDAO {
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
 }
 
