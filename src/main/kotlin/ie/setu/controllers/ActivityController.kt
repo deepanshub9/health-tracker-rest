@@ -1,11 +1,17 @@
 package ie.setu.controllers
 
+<<<<<<< HEAD
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.controllers.HealthTrackerController
 
 import ie.setu.domain.Activity
 import ie.setu.domain.User
+=======
+import ie.setu.controllers.HealthTrackerController
+
+import ie.setu.domain.Activity
+>>>>>>> 4ece7b964c3abad71c3ea5a0b100f3951bf65a3f
 import ie.setu.utils.jsonObjectMapper
 import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
@@ -28,6 +34,7 @@ object ActivityController {
         }
 
     }
+<<<<<<< HEAD
     fun addActivity(ctx: Context) {
         val mapper = jacksonObjectMapper()
         val activity = mapper.readValue<Activity>(ctx.body())
@@ -51,5 +58,10 @@ object ActivityController {
         ctx.json(activity)
 
     }
+=======
+    //fun addActivity(ctx: Context) {}
+    //fun deleteActivityById(ctx: Context) {}
+    //fun updateActivity(ctx: Context) {}
+>>>>>>> 4ece7b964c3abad71c3ea5a0b100f3951bf65a3f
 
 }

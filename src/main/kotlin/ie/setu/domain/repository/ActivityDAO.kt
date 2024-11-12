@@ -26,6 +26,7 @@ class ActivityDAO {
             Activities.selectAll().where{Activities.id eq id}.map{mapToActivity(it)}.firstOrNull()
         }
     }
+<<<<<<< HEAD
 
 
 
@@ -68,4 +69,6 @@ class ActivityDAO {
 
 
 
+=======
+>>>>>>> 4ece7b964c3abad71c3ea5a0b100f3951bf65a3f
 }
