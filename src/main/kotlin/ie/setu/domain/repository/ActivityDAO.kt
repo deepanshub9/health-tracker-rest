@@ -1,6 +1,7 @@
 package ie.setu.domain.repository
 import ie.setu.utils.mapToActivity
 import ie.setu.domain.Activity
+import ie.setu.domain.HealthTip
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.selectAll
 import ie.setu.domain.db.Activities
@@ -21,11 +22,12 @@ class ActivityDAO {
         return activityList
     }
 
-    fun getactivitybyId(id : Int) :Activity? {
+    fun getactivitybyId(id : Int) : Activity? {
         return transaction {
             Activities.selectAll().where{Activities.id eq id}.map{mapToActivity(it)}.firstOrNull()
         }
     }
+
 
 
 
@@ -62,6 +64,7 @@ class ActivityDAO {
         }
 
     }
+
 
 
 

@@ -5,6 +5,7 @@ import org.jetbrains.exposed.sql.Database
 import org.postgresql.util.PSQLException
 import org.jetbrains.exposed.sql.name
 
+
 class DbConfig {
 
     private val logger = KotlinLogging.logger {}

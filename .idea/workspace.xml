@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ff774716-618a-47e8-b7fb-05cee9a7d6f8" name="Changes" comment="User functionality Complete">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTipController.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/HealthTip.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/HealthTipDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/Dbconfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/Dbconfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/HealthTip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/HealthTip.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/health-tracker-rest.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/DbConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/config/DbConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/JavalinConfig$startJavalinService$app$1$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/JavalinConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/ActivityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/controllers/ActivityController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/HealthTrackerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/controllers/HealthTrackerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/WaterController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/HealthTip.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/WaterIntake.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/db/Water.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/repository/ActivityDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/repository/WaterDAO.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/utils/DBUtilitiesKt.class" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Object" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/main" />
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;deepanshub9&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/deepanshub9/health-tracker-rest.git&quot;,
+    &quot;accountId&quot;: &quot;2235ffd4-4ebb-4095-a9fd-afae5d43bc93&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2oXPd8YrPUHV0HgrRElmwuPFrbn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Kotlin.AppKt.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.health-tracker-rest [validate].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindow.Terminal.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ff774716-618a-47e8-b7fb-05cee9a7d6f8" name="Changes" comment="" />
+      <created>1731013033191</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731013033191</updated>
+      <workItem from="1731013034863" duration="2741000" />
+      <workItem from="1731015811656" duration="2777000" />
+      <workItem from="1731019613225" duration="1649000" />
+      <workItem from="1731021283687" duration="6662000" />
+      <workItem from="1731028169779" duration="125000" />
+      <workItem from="1731028307244" duration="130000" />
+      <workItem from="1731059086331" duration="9522000" />
+      <workItem from="1731192512951" duration="64000" />
+      <workItem from="1731193282317" duration="63000" />
+      <workItem from="1731240451309" duration="10293000" />
+      <workItem from="1731283328282" duration="468000" />
+      <workItem from="1731283851576" duration="206000" />
+      <workItem from="1731314782275" duration="822000" />
+      <workItem from="1731315654775" duration="280000" />
+      <workItem from="1731325263129" duration="16085000" />
+      <workItem from="1731350148266" duration="3231000" />
+      <workItem from="1731452965411" duration="2915000" />
+      <workItem from="1731507569584" duration="900000" />
+      <workItem from="1731508488488" duration="5035000" />
+    </task>
+    <task id="LOCAL-00001" summary="Lab javalin commit">
+      <option name="closed" value="true" />
+      <created>1731024061690</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1731024061690</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Lab javalin commit">
+      <option name="closed" value="true" />
+      <created>1731024706608</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731024706608</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Lab javalin commit">
+      <option name="closed" value="true" />
+      <created>1731024726998</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731024726998</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Lab javalin commit">
+      <option name="closed" value="true" />
+      <created>1731026702015</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731026702015</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Add endpoints for find by email, delete, and update users">
+      <option name="closed" value="true" />
+      <created>1731026728251</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731026728251</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Add endpoints for find by email, delete, and update users">
+      <option name="closed" value="true" />
+      <created>1731027934168</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731027934168</updated>
+    </task>
+    <task id="LOCAL-00007" summary="lab4 files commit">
+      <option name="closed" value="true" />
+      <created>1731028211730</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1731028211730</updated>
+    </task>
+    <task id="LOCAL-00008" summary="lab4 files commit">
+      <option name="closed" value="true" />
+      <created>1731028222482</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1731028222482</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Added endpoint findbyEmail, delete(by Id) and Update (by Id)">
+      <option name="closed" value="true" />
+      <created>1731071805448</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1731071805448</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Added endpoint findbyEmail, delete(by Id) and Update (by Id)">
+      <option name="closed" value="true" />
+      <created>1731071821658</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1731071821658</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Added endpoint findbyEmail, delete(by Id) and Update (by Id)">
+      <option name="closed" value="true" />
+      <created>1731071864981</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1731071864981</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Added endpoint findbyEmail, delete(by Id) and Update (by Id)">
+      <option name="closed" value="true" />
+      <created>1731071894834</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1731071894834</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Start Working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731283139640</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1731283139640</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731283362466</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1731283362466</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731283615641</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1731283615641</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731283693311</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1731283693311</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731284007422</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1731284007422</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731284022451</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1731284022451</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731284055142</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1731284055142</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Start working on Activity function">
+      <option name="closed" value="true" />
+      <created>1731315387614</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1731315387614</updated>
+    </task>
+    <task id="LOCAL-00021" summary="User functionality Complete">
+      <option name="closed" value="true" />
+      <created>1731358538727</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1731358538727</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Lab javalin commit" />
+    <MESSAGE value="Add endpoints for find by email, delete, and update users" />
+    <MESSAGE value="lab4 files commit" />
+    <MESSAGE value="lab 4 files" />
+    <MESSAGE value="Added endpoint findbyEmail, delete(by Id) and Update (by Id)" />
+    <MESSAGE value="Start work on Activity function" />
+    <MESSAGE value="first commit till lab 5" />
+    <MESSAGE value="Start Working on Activity function" />
+    <MESSAGE value="first commit" />
+    <MESSAGE value="Start working on Activity function" />
+    <MESSAGE value="User functionality Complete" />
+    <MESSAGE value="Completed Activity Functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed Activity Functionality" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt</url>
+          <line>51</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

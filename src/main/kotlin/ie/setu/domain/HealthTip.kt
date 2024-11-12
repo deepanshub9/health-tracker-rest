@@ -1,4 +1,7 @@
 package ie.setu.domain
 
-class HealthTip {
-}
+
+
+data class HealthTip(
+     val id : Int,
+     val tips: String)

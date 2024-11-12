@@ -7,7 +7,10 @@ import ie.setu.domain.db.Activities
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Water
 import org.jetbrains.exposed.sql.ResultRow
-import java.sql.Timestamp
+import org.joda.time.DateTime
+import org.jetbrains.exposed.sql.Database
+import org.jetbrains.exposed.sql.transactions.transaction
+
 
 
 fun mapToUser(it: ResultRow)= User(
@@ -16,7 +19,7 @@ fun mapToUser(it: ResultRow)= User(
     email = it[Users.email]
 )
 
-fun mapToActivity(it: ResultRow)= Activity(
+fun mapToActivity(it: ResultRow): Activity = Activity(
     id = it[Activities.id],
     description = it[Activities.description],
     duration = it[Activities.duration],
@@ -27,6 +30,14 @@ fun mapToActivity(it: ResultRow)= Activity(
 
 fun mapToWaterIntake(it: ResultRow)= WaterIntake(
     userid = it[Water.userid],
+    dateofdrinking = it[Water.dateofdrinking],
     litres = it[Water.litres]
+
 )
+
+//fun mapToHealthTip(it: ResultRow)= HealthTip(
+//
+//    id = it[HealthTips.id],
+//    id = it[HealthTips.tips]
+//)
 
