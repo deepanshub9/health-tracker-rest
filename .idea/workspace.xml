@@ -4,36 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff774716-618a-47e8-b7fb-05cee9a7d6f8" name="Changes" comment="User functionality Complete">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTipController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/HealthTip.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/HealthTipDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/Dbconfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/Dbconfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/HealthTip.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/HealthTip.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/utils/DBUtilities.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/health-tracker-rest.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/DbConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/config/DbConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/JavalinConfig$startJavalinService$app$1$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/config/JavalinConfig.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/ActivityController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/controllers/ActivityController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/HealthTrackerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/ie/setu/controllers/HealthTrackerController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/controllers/WaterController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/HealthTip.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/WaterIntake.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/db/Water.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/repository/ActivityDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/domain/repository/WaterDAO.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ie/setu/utils/DBUtilitiesKt.class" beforeDir="false" />
-    </list>
+    <list default="true" id="ff774716-618a-47e8-b7fb-05cee9a7d6f8" name="Changes" comment="Completed WaterIntake functionality" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -136,7 +107,7 @@
       <workItem from="1731350148266" duration="3231000" />
       <workItem from="1731452965411" duration="2915000" />
       <workItem from="1731507569584" duration="900000" />
-      <workItem from="1731508488488" duration="5035000" />
+      <workItem from="1731508488488" duration="5359000" />
     </task>
     <task id="LOCAL-00001" summary="Lab javalin commit">
       <option name="closed" value="true" />
@@ -306,7 +277,23 @@
       <option name="project" value="LOCAL" />
       <updated>1731358538727</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Completed Activity functionality">
+      <option name="closed" value="true" />
+      <created>1731514380916</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1731514380916</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Completed WaterIntake functionality">
+      <option name="closed" value="true" />
+      <created>1731514550000</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1731514550000</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -327,7 +314,10 @@
     <MESSAGE value="Start working on Activity function" />
     <MESSAGE value="User functionality Complete" />
     <MESSAGE value="Completed Activity Functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="Completed Activity Functionality" />
+    <MESSAGE value="Water functionality Complete" />
+    <MESSAGE value="Completed Activity functionality" />
+    <MESSAGE value="Completed WaterIntake functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed WaterIntake functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
