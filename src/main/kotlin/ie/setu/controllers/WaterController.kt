@@ -1,15 +1,13 @@
 package ie.setu.controllers
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.WaterIntake
-import ie.setu.domain.db.Water
 import ie.setu.domain.repository.WaterDAO
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.http.Context
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
-
+import ie.setu.utils.jsonToObject
 
 object WaterController {
     private val waterDAO = WaterDAO()
@@ -47,12 +45,24 @@ object WaterController {
 
     }
 
-    fun updateWaterId( ctx: Context) {
-        val mapper = jsonObjectMapper()
-        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
-        waterDAO.waterUpdatebyId(Water.userid,  waterIntake)
-        ctx.json(waterIntake)
 
+
+
+    fun updateWaterId( ctx: Context) {
+        val waterIntake: WaterIntake = jsonToObject(ctx.body())
+        val id = waterDAO.waterUpdatebyId(waterIntake.id, waterIntake)
+        if (id != null) {
+            ctx.json(waterIntake)
+            ctx.status(201)
+
+        }
     }
+
+//        val mapper = jsonObjectMapper()
+//        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
+//        waterDAO.waterUpdatebyId(Water.id,  waterIntake)
+//        ctx.json(waterIntake)
+
+
 
 }

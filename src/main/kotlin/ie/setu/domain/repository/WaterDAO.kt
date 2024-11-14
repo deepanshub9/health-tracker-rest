@@ -26,14 +26,14 @@ class WaterDAO {
 
      fun getWaterIntake(id: Int): WaterIntake? {
          return transaction {
-             Water.selectAll().where { Water.userid eq id }.map { mapToWaterIntake(it) }.firstOrNull()
+             Water.selectAll().where { Water.id eq id }.map { mapToWaterIntake(it) }.firstOrNull()
          }
 
 
      }
 
     fun deleteWaterIntake(id: Int): Int {
-        return transaction { Water.deleteWhere { Water.userid eq id  } }
+        return transaction { Water.deleteWhere { Water.id eq id  } }
 
     }
 
@@ -41,6 +41,7 @@ class WaterDAO {
     fun save(waterIntake: WaterIntake){
         return transaction {
             Water.insert {
+                it[id] = waterIntake.id
                 it[userid] = waterIntake.userid
                 it[litres] = waterIntake.litres
                 it[dateofdrinking] = waterIntake.dateofdrinking
@@ -48,9 +49,9 @@ class WaterDAO {
         }
     }
 
-    fun waterUpdatebyId(id: Column<Int>, waterIntake: WaterIntake){
+    fun waterUpdatebyId(id: Int, waterIntake: WaterIntake){
         return transaction {
-            Water.update({ Water.userid eq id }) {
+            Water.update({ Water.id eq id }) {
                 it[userid] = waterIntake.userid
                 it[litres] = waterIntake.litres
                 it[dateofdrinking] = waterIntake.dateofdrinking

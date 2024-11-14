@@ -3,7 +3,7 @@ package ie.setu.utils
 import ie.setu.domain.*
 import ie.setu.domain.db.*
 import ie.setu.domain.Activity
-//import ie.setu.domain.Sleep
+import ie.setu.domain.Sleep
 import ie.setu.domain.db.Activities
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Water
@@ -11,9 +11,8 @@ import org.jetbrains.exposed.sql.ResultRow
 import org.joda.time.DateTime
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
-//import ie.setu.domain.db.Sleep
 
-
+import org.jetbrains.exposed.sql.jodatime.datetime
 
 
 fun mapToUser(it: ResultRow)= User(
@@ -32,9 +31,10 @@ fun mapToActivity(it: ResultRow): Activity = Activity(
 )
 
 fun mapToWaterIntake(it: ResultRow)= WaterIntake(
-    userid = it[Water.userid],
+    id = it[Water.id],
+    litres = it[Water.litres],
     dateofdrinking = it[Water.dateofdrinking],
-    litres = it[Water.litres]
+    userid = it[Water.userid]
 
 )
 
@@ -44,10 +44,10 @@ fun mapToHealthTip(it: ResultRow)= HealthTip(
     tips = it[HealthTips.tips]
 )
 
-//fun mapToSleep(it: ResultRow) = Sleep(
-//    id = it[Sleep.id],
-//    duration = it[Sleep.duration],
-//    date = it[Sleep.DataTime],
-//    userid = it[sleep.userid]
-//)
+fun mapToSleep(it: ResultRow) = Sleep(
+    id = it[SleepDb.id],
+    duration = it[SleepDb.duration],
+    date = it[SleepDb.date],
+    userid = it[SleepDb.userid]
+)
 

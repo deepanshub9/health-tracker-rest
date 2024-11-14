@@ -1,10 +1,7 @@
 package ie.setu.config
 
-import ie.setu.controllers.ActivityController
+import ie.setu.controllers.*
 import ie.setu.controllers.ActivityController.getAllActivities
-import ie.setu.controllers.HealthTipController
-import ie.setu.controllers.HealthTrackerController
-import ie.setu.controllers.WaterController
 import ie.setu.domain.db.HealthTips
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.json.JavalinJackson
@@ -64,6 +61,22 @@ class JavalinConfig {
         app.post("/api/HealthTips", HealthTipController::addhealthTip)
         app.delete("/api/HealthTips/{hth-id}", HealthTipController::deleteHealthTipById)
         app.patch("/api/HealthTips/{hth-id}", HealthTipController::updateHealthTip)
+
+
+        //Sleep - API CRUD
+        app.get("/api/Sleep", SleepController::getsleepUser)
+        app.get("/api/Sleep/{slp-id}", SleepController::getsleepById)
+        app.post("/api/Sleep", SleepController::addsleep)
+
+        app.delete("/api/Sleep/{slp-id}", SleepController::deleteSleepByid)
+        app.patch("/api/Sleep/{slp-id}", SleepController::updatesleepbyid)
+
+
+
+
+
+
+
 
 
     }

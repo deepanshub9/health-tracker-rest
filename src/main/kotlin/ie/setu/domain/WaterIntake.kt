@@ -6,7 +6,8 @@ import org.jetbrains.exposed.sql.*
 
 
 data class WaterIntake (
-    var userid: Int,
+    val id: Int,
     var litres:Double,
-    var dateofdrinking: DateTime
+    var dateofdrinking: DateTime,
+    var userid: Int
 )
