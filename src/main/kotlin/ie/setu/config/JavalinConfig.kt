@@ -56,13 +56,14 @@ class JavalinConfig {
         app.post("/api/Water", WaterController::addWater)
         app.patch("/api/Water/{wat-id}", WaterController::updateWaterId)
 
-//        //HealthTip - API CRUD
-//        app.get("/api/healthtip", HealthTipController::getAllHealthTip)
-//        app.get("/api/healthtip/{hth-id}", HealthTipController::getHealthTipById)
-//        app.post("/api/healthtip/", HealthTipController::addHealthTip)
-//
-//        app.delete("/api/healthtip/{hth-id}", HealthTipController::deleteHealthTipById)
-//        app.patch("/api/healthtip/{hth-id}", HealthTipController::updateHelathTipbyId)
+        //HealthTip - API CRUD
+        app.get("/api/HealthTips", HealthTipController::getAllHealthTip)
+        app.get("/api/HealthTips/{hth-id}", HealthTipController::getHealthTipById)
+        app.post("/api/HealthTips/", HealthTipController::addHealthTip)
+
+        app.post("/api/HealthTips", HealthTipController::addhealthTip)
+        app.delete("/api/HealthTips/{hth-id}", HealthTipController::deleteHealthTipById)
+        app.patch("/api/HealthTips/{hth-id}", HealthTipController::updateHealthTip)
 
 
     }

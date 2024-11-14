@@ -1,9 +1,8 @@
 package ie.setu.domain.repository
-import ie.setu.domain.Activity
+
 import ie.setu.domain.HealthTip
-import ie.setu.domain.db.Activities
 import ie.setu.domain.db.HealthTips
-//import ie.setu.utils.mapToHealthTip
+import ie.setu.utils.mapToHealthTip
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.insert
@@ -15,32 +14,32 @@ import org.jetbrains.exposed.sql.update
 class HealthTipDAO {
 
     fun addHealthTip(healthTip: HealthTip) {
-    return transaction {
-        HealthTips.insert {
-        it[id] = healthTip.id
-        it[tips] = healthTip.tips
-        } get HealthTips.id
-    }
+        return transaction {
+            HealthTips.insert {
+                it[id] = healthTip.id
+                it[tips] = healthTip.tips
+            } get HealthTips.id
+        }
     }
 
-//    fun getAllHealthTips(): ArrayList<HealthTip> {
-//        val HealthTipList: ArrayList<HealthTip> = arrayListOf()
-//        transaction {
-//
-//            HealthTips.selectAll().map {
-//                HealthTipList.add(mapToHealthTip(it))
-//        }
-//
-//    }
-//        return HealthTipList
-//
-//}
+    fun getAllHealthTips(): ArrayList<HealthTip> {
+        val HealthTipList: ArrayList<HealthTip> = arrayListOf()
+        transaction {
 
-//    fun getHealthTipbyId(id : Int) : HealthTip? {
-//    return transaction {
-//        HealthTips.selectAll().where{HealthTips.id eq id}.map{ mapToHealthTip(it) }.firstOrNull()
-//    }
-//    }
+            HealthTips.selectAll().map {
+                HealthTipList.add(mapToHealthTip(it))
+            }
+
+        }
+        return HealthTipList
+
+    }
+
+    fun getHealthTipbyId(id: Int): HealthTip? {
+        return transaction {
+            HealthTips.selectAll().where { HealthTips.id eq id }.map { mapToHealthTip(it) }.firstOrNull()
+        }
+    }
 
 
     fun deleteHeatlhTipbyId(id: Int): Int? {
@@ -48,7 +47,7 @@ class HealthTipDAO {
     }
 
 
-    fun save(healthTip: HealthTip){
+    fun save(healthTip: HealthTip) {
         return transaction {
             HealthTips.insert {
                 it[id] = healthTip.id
@@ -57,17 +56,14 @@ class HealthTipDAO {
         }
     }
 
-    fun updateHealthTip(healthTip: HealthTip){
+    fun updateHealthTip(healthTip1: Int, healthTip: HealthTip) {
         return transaction {
-            HealthTips.update({ HealthTips.id eq healthTip.id }){
+            HealthTips.update({ HealthTips.id eq healthTip.id }) {
                 it[id] = healthTip.id
                 it[tips] = healthTip.tips
             }
         }
     }
-
-
-
 
 
 }

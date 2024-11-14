@@ -3,6 +3,7 @@ package ie.setu.utils
 import ie.setu.domain.*
 import ie.setu.domain.db.*
 import ie.setu.domain.Activity
+//import ie.setu.domain.Sleep
 import ie.setu.domain.db.Activities
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.db.Water
@@ -10,6 +11,8 @@ import org.jetbrains.exposed.sql.ResultRow
 import org.joda.time.DateTime
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.transactions.transaction
+//import ie.setu.domain.db.Sleep
+
 
 
 
@@ -35,9 +38,16 @@ fun mapToWaterIntake(it: ResultRow)= WaterIntake(
 
 )
 
-//fun mapToHealthTip(it: ResultRow)= HealthTip(
-//
-//    id = it[HealthTips.id],
-//    id = it[HealthTips.tips]
+fun mapToHealthTip(it: ResultRow)= HealthTip(
+
+    id = it[HealthTips.id],
+    tips = it[HealthTips.tips]
+)
+
+//fun mapToSleep(it: ResultRow) = Sleep(
+//    id = it[Sleep.id],
+//    duration = it[Sleep.duration],
+//    date = it[Sleep.DataTime],
+//    userid = it[sleep.userid]
 //)
 

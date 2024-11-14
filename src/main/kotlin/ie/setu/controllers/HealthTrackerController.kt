@@ -58,11 +58,11 @@ object HealthTrackerController {
         userDao.update(user.id, user)
         ctx.json(user)
 
-//        val foundUser : User = jsonToObject(ctx.body())
-//        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user=foundUser)) != 0)
-//            ctx.status(204)
-//        else
-//            ctx.status(404)
+        val foundUser : User = jsonToObject(ctx.body())
+        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user=foundUser)) != 0)
+            ctx.status(204)
+        else
+            ctx.status(404)
     }
 
 
