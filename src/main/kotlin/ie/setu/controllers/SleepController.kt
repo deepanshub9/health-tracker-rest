@@ -15,8 +15,6 @@ import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 
 
-
-
 object SleepController {
     private val sleepDAO = SleepDAO()
 
@@ -26,11 +24,10 @@ object SleepController {
 
     fun getsleepById(ctx: Context) {
         val act = sleepDAO.getSleepbyId(ctx.pathParam("slp-id").toInt())
-        if(act != null){
+        if (act != null) {
             ctx.json(act)
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(400)
         }
 
@@ -48,10 +45,10 @@ object SleepController {
 
 
     fun deleteSleepByid(ctx: Context) {
-        val sleep =  sleepDAO.deleteSleepbyId(ctx.pathParam("slp-id").toInt())
+        val sleep = sleepDAO.deleteSleepbyId(ctx.pathParam("slp-id").toInt())
         if (sleep != null) {
-           ctx.status(204)
-       } else
+            ctx.status(204)
+        } else
             ctx.status(400)
     }
 
@@ -67,17 +64,6 @@ object SleepController {
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

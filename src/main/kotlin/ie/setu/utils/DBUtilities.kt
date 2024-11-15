@@ -15,7 +15,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.jodatime.datetime
 
 
-fun mapToUser(it: ResultRow)= User(
+fun mapToUser(it: ResultRow) = User(
     id = it[Users.id],
     name = it[Users.name],
     email = it[Users.email]
@@ -30,7 +30,7 @@ fun mapToActivity(it: ResultRow): Activity = Activity(
     userId = it[Activities.userid]
 )
 
-fun mapToWaterIntake(it: ResultRow)= WaterIntake(
+fun mapToWaterIntake(it: ResultRow) = WaterIntake(
     id = it[Water.id],
     litres = it[Water.litres],
     dateofdrinking = it[Water.dateofdrinking],
@@ -38,7 +38,7 @@ fun mapToWaterIntake(it: ResultRow)= WaterIntake(
 
 )
 
-fun mapToHealthTip(it: ResultRow)= HealthTip(
+fun mapToHealthTip(it: ResultRow) = HealthTip(
 
     id = it[HealthTips.id],
     tips = it[HealthTips.tips]

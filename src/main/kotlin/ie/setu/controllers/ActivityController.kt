@@ -9,9 +9,6 @@ import ie.setu.domain.Activity
 import ie.setu.domain.User
 
 
-
-
-
 import ie.setu.utils.jsonObjectMapper
 import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
@@ -23,13 +20,13 @@ object ActivityController {
     fun getAllActivities(ctx: Context) {
         ctx.json(activityDao.getAllActivities())
     }
+
     fun getActivityById(ctx: Context) {
         val act = activityDao.getactivitybyId(ctx.pathParam("act-id").toInt())
-        if(act != null){
+        if (act != null) {
             ctx.json(act)
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(400)
         }
 
@@ -44,13 +41,14 @@ object ActivityController {
 
 
     fun deleteActivityById(ctx: Context) {
-    if (activityDao.deleteActivity(ctx.pathParam("act-id").toInt()) != 0)
-        ctx.status(204)
+        if (activityDao.deleteActivity(ctx.pathParam("act-id").toInt()) != 0)
+            ctx.status(204)
         else
-        ctx.status(404)
+            ctx.status(404)
 
 
     }
+
     fun updateActivity(ctx: Context) {
         val mapper = jacksonObjectMapper()
         val activity = mapper.readValue<Activity>(ctx.body())
@@ -58,8 +56,6 @@ object ActivityController {
         ctx.json(activity)
 
     }
-
-
 
 
 }

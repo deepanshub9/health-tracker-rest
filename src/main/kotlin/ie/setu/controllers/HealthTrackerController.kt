@@ -23,8 +23,7 @@ object HealthTrackerController {
         if (user != null) {
             ctx.json(user)
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(404)
         }
     }
@@ -34,48 +33,37 @@ object HealthTrackerController {
         if (user != null) {
             ctx.json(user)
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.status(404)
         }
     }
 
     fun addUser(ctx: Context) {
         val mapper = jacksonObjectMapper()
-        val user =  mapper.readValue<User>(ctx.body())
+        val user = mapper.readValue<User>(ctx.body())
         userDao.save(user)
         ctx.json(user)
     }
-    fun deleteUser(ctx: Context){
+
+    fun deleteUser(ctx: Context) {
         if (userDao.delete(ctx.pathParam("user-id").toInt()) != 0)
             ctx.status(204)
         else
             ctx.status(404)
     }
-    fun updateUser(ctx: Context){
+
+    fun updateUser(ctx: Context) {
         val mapper = jacksonObjectMapper()
-        val user =  mapper.readValue<User>(ctx.body())
+        val user = mapper.readValue<User>(ctx.body())
         userDao.update(user.id, user)
         ctx.json(user)
 
-        val foundUser : User = jsonToObject(ctx.body())
-        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user=foundUser)) != 0)
+        val foundUser: User = jsonToObject(ctx.body())
+        if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user = foundUser)) != 0)
             ctx.status(204)
         else
             ctx.status(404)
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

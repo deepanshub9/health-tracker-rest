@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -18,7 +19,6 @@
         <exposed-version>0.55.0</exposed-version>
         <postresql-version>42.7.4</postresql-version>
     </properties>
-
 
 
     <dependencies>
@@ -42,11 +42,11 @@
             <artifactId>exposed-core</artifactId>
             <version>${exposed-version}</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.jetbrains.exposed</groupId>-->
-<!--            <artifactId>exposed</artifactId>-->
-<!--            <version>0.17.14</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.jetbrains.exposed</groupId>-->
+        <!--            <artifactId>exposed</artifactId>-->
+        <!--            <version>0.17.14</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.jetbrains.exposed</groupId>
             <artifactId>exposed-jdbc</artifactId>
@@ -100,11 +100,11 @@
             <artifactId>javaee-api</artifactId>
             <version>8.0</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.konghq</groupId>-->
-<!--            <artifactId>unirest-java</artifactId>-->
-<!--            <version>3.11.09</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.konghq</groupId>-->
+        <!--            <artifactId>unirest-java</artifactId>-->
+        <!--            <version>3.11.09</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>

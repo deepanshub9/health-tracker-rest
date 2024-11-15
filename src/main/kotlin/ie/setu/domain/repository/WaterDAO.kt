@@ -1,4 +1,5 @@
 package ie.setu.domain.repository
+
 import ie.setu.utils.mapToWaterIntake
 import ie.setu.domain.db.Water
 import ie.setu.domain.WaterIntake
@@ -11,9 +12,8 @@ import org.jetbrains.exposed.sql.update
 import java.util.ArrayList
 
 
-
 class WaterDAO {
-   
+
     fun getAll(): ArrayList<WaterIntake> {
         val waterList: ArrayList<WaterIntake> = arrayListOf()
         transaction {
@@ -22,23 +22,23 @@ class WaterDAO {
             }
         }
         return waterList
-}
+    }
 
-     fun getWaterIntake(id: Int): WaterIntake? {
-         return transaction {
-             Water.selectAll().where { Water.id eq id }.map { mapToWaterIntake(it) }.firstOrNull()
-         }
+    fun getWaterIntake(id: Int): WaterIntake? {
+        return transaction {
+            Water.selectAll().where { Water.id eq id }.map { mapToWaterIntake(it) }.firstOrNull()
+        }
 
 
-     }
+    }
 
     fun deleteWaterIntake(id: Int): Int {
-        return transaction { Water.deleteWhere { Water.id eq id  } }
+        return transaction { Water.deleteWhere { Water.id eq id } }
 
     }
 
 
-    fun save(waterIntake: WaterIntake){
+    fun save(waterIntake: WaterIntake) {
         return transaction {
             Water.insert {
                 it[id] = waterIntake.id
@@ -49,7 +49,7 @@ class WaterDAO {
         }
     }
 
-    fun waterUpdatebyId(id: Int, waterIntake: WaterIntake){
+    fun waterUpdatebyId(id: Int, waterIntake: WaterIntake) {
         return transaction {
             Water.update({ Water.id eq id }) {
                 it[userid] = waterIntake.userid

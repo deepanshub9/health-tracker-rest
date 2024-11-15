@@ -1,4 +1,5 @@
 package ie.setu.controllers
+
 import com.fasterxml.jackson.module.kotlin.readValue
 import ie.setu.domain.WaterIntake
 import ie.setu.domain.repository.WaterDAO
@@ -13,7 +14,8 @@ object WaterController {
     private val waterDAO = WaterDAO()
 
     fun getWaterDetails(ctx: Context) {
-        val mapper = jacksonObjectMapper().registerModule(JodaModule()).configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         ctx.json(mapper.writeValueAsString(waterDAO.getAll()))
     }
 
@@ -22,17 +24,17 @@ object WaterController {
         if (id != null) {
             ctx.json(id)
             ctx.status(200)
-        }
-        else{
+        } else {
             ctx.json(400)
         }
 
 
     }
+
     fun deleteWaterById(ctx: Context) {
-        if (waterDAO.deleteWaterIntake(ctx.pathParam("wat-id").toInt()) !=0)
+        if (waterDAO.deleteWaterIntake(ctx.pathParam("wat-id").toInt()) != 0)
             ctx.json(204)
-            else
+        else
             ctx.json(400)
 
     }
@@ -46,9 +48,7 @@ object WaterController {
     }
 
 
-
-
-    fun updateWaterId( ctx: Context) {
+    fun updateWaterId(ctx: Context) {
         val waterIntake: WaterIntake = jsonToObject(ctx.body())
         val id = waterDAO.waterUpdatebyId(waterIntake.id, waterIntake)
         if (id != null) {
@@ -62,7 +62,6 @@ object WaterController {
 //        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
 //        waterDAO.waterUpdatebyId(Water.id,  waterIntake)
 //        ctx.json(waterIntake)
-
 
 
 }

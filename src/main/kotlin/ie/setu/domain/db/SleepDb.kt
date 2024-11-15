@@ -8,7 +8,7 @@ import org.jetbrains.exposed.sql.jodatime.datetime
 import java.sql.Timestamp
 
 
-object SleepDb  : Table("Sleep") {
+object SleepDb : Table("Sleep") {
     val id = integer("id").autoIncrement()
     val duration = double("duration")
     val date = datetime("date")

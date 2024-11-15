@@ -6,10 +6,9 @@ import org.joda.time.DateTime
 import org.jetbrains.exposed.sql.jodatime.datetime
 
 
-
 object Water : Table("Water") {
     val id = integer("id").autoIncrement()
     val litres = double("litres")
     val dateofdrinking = datetime(name = "dateofdrinking")
-    val userid = integer(name="userid")
+    val userid = integer(name = "userid")
 }

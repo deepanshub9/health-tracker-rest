@@ -13,21 +13,30 @@ import io.javalin.Javalin
 class JavalinConfig {
 
     fun startJavalinService(): Javalin {
-
+        println("INFO: Starting Javalin service...")
         val app = Javalin.create().apply {
-            exception(Exception::class.java) { e, ctx -> e.printStackTrace() }
-            error(404) { ctx -> ctx.json("404 - Not Found") }
+            exception(Exception::class.java) { e, ctx ->
+                println("ERROR: Exception occurred: ${e.message}")
+                e.printStackTrace() }
+            error(404) { ctx ->
+                println("WARN: 404 - Not Found error triggered for request: ${ctx.url()}")
+                ctx.json("404 - Not Found") }
         }.start(getRemoteAssignedPort())
 
+        println("INFO: Javalin started on port ${app.port()}")
         registerRoutes(app)
         return app
     }
 
     private fun getRemoteAssignedPort(): Int {
         val remotePort = System.getenv("PORT")
+        println("INFO: PORT environment variable value: $remotePort")
         return if (remotePort != null) {
             Integer.parseInt(remotePort)
-        } else 7001
+        } else {
+            println("WARN: PORT environment variable not found. Using default port 7001.")
+            7001
+        }
     }
 
     private fun registerRoutes(app: Javalin) {
@@ -49,7 +58,7 @@ class JavalinConfig {
         app.patch("/api/activities/{act-id}", ActivityController::updateActivity)
 
         //WaterIntake - API CRUD
-        app.get("/api/Water",WaterController::getWaterDetails)
+        app.get("/api/Water", WaterController::getWaterDetails)
         app.get("/api/Water/{wat-id}", WaterController::getWaterById)
 
         app.delete("/api/Water/{wat-id}", WaterController::deleteWaterById)
@@ -75,20 +84,7 @@ class JavalinConfig {
         app.patch("/api/Sleep/{slp-id}", SleepController::updatesleepbyid)
 
 
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
 
 
 }

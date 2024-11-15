@@ -1,7 +1,8 @@
 package ie.setu.domain.db
+
 import org.jetbrains.exposed.sql.Table
 
-object  Activities : Table("Activity") {
+object Activities : Table("Activity") {
     val id = integer(name = "activityid").autoIncrement()
     val description = varchar("description", 255)
     val duration = double("duration")

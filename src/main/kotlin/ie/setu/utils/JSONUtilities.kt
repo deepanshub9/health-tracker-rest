@@ -11,15 +11,13 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import java.net.http.HttpResponse
 
 
-fun jsonObjectMapper(): ObjectMapper
-        = ObjectMapper()
+fun jsonObjectMapper(): ObjectMapper = ObjectMapper()
     .registerModule(JavaTimeModule())
     .registerModule(JodaModule())
     .registerModule(KotlinModule.Builder().build())
     .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 
-inline fun <reified T: Any> jsonToObject(json: String) : T
-        = jacksonObjectMapper()
+inline fun <reified T : Any> jsonToObject(json: String): T = jacksonObjectMapper()
     .registerModule(JodaModule())
     .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
     .readValue<T>(json)

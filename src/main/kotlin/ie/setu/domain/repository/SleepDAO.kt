@@ -16,22 +16,22 @@ import org.jetbrains.exposed.sql.update
 
 class SleepDAO {
 
-  fun getAllsleepUser(): ArrayList<Sleep> {
-      val sleepList: ArrayList<Sleep> = arrayListOf()
-      transaction {
+    fun getAllsleepUser(): ArrayList<Sleep> {
+        val sleepList: ArrayList<Sleep> = arrayListOf()
+        transaction {
 
-          SleepDb.selectAll().map {
-              sleepList.add(mapToSleep(it))
-          }
-      }
-      return sleepList
-  }
+            SleepDb.selectAll().map {
+                sleepList.add(mapToSleep(it))
+            }
+        }
+        return sleepList
+    }
 
-  fun getSleepbyId(id: Int): Sleep? {
-      return transaction {
-          SleepDb.selectAll().where{SleepDb.id eq id }.map{mapToSleep(it)}.firstOrNull()
-      }
-  }
+    fun getSleepbyId(id: Int): Sleep? {
+        return transaction {
+            SleepDb.selectAll().where { SleepDb.id eq id }.map { mapToSleep(it) }.firstOrNull()
+        }
+    }
 
     fun save(sleep: Sleep) {
         return transaction {
@@ -51,9 +51,7 @@ class SleepDAO {
     }
 
 
-
-
-    fun updateSleepbyId(id: Int, sleep: Sleep){
+    fun updateSleepbyId(id: Int, sleep: Sleep) {
         return transaction {
             SleepDb.update({ SleepDb.id eq id }) {
                 it[duration] = sleep.duration
@@ -62,14 +60,6 @@ class SleepDAO {
             }
         }
     }
-
-
-
-
-
-
-
-
 
 
 }
