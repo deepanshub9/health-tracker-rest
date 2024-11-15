@@ -21,7 +21,7 @@ class JavalinConfig {
             error(404) { ctx ->
                 println("WARN: 404 - Not Found error triggered for request: ${ctx.url()}")
                 ctx.json("404 - Not Found") }
-        }.start(getRemoteAssignedPort())
+        }.start("0.0.0.0", getRemoteAssignedPort())
 
         println("INFO: Javalin started on port ${app.port()}")
         registerRoutes(app)
