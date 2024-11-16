@@ -5,8 +5,6 @@ import ie.setu.controllers.ActivityController.getAllActivities
 import ie.setu.domain.db.HealthTips
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.json.JavalinJackson
-
-
 import io.javalin.Javalin
 
 

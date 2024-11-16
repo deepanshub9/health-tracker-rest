@@ -1,5 +1,6 @@
 package ie.setu.controllers
 
+
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.javalin.http.Context
@@ -18,14 +19,20 @@ import com.fasterxml.jackson.datatype.joda.JodaModule
 object SleepController {
     private val sleepDAO = SleepDAO()
 
+
     fun getsleepUser(ctx: Context) {
-        ctx.json(sleepDAO.getAllsleepUser())
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+        ctx.json(mapper.writeValueAsString(sleepDAO.getAllsleepUser()))
+
     }
 
     fun getsleepById(ctx: Context) {
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val act = sleepDAO.getSleepbyId(ctx.pathParam("slp-id").toInt())
         if (act != null) {
-            ctx.json(act)
+            ctx.json(mapper.writeValueAsString(sleepDAO.getSleepbyId(ctx.pathParam("slp-id").toInt())))
             ctx.status(200)
         } else {
             ctx.status(400)
@@ -34,10 +41,12 @@ object SleepController {
     }
 
     fun addsleep(ctx: Context) {
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val sleep: Sleep = jsonToObject(ctx.body())
         val id = sleepDAO.save(sleep)
         if (id != null) {
-
+            ctx.json(mapper.writeValueAsString(sleepDAO.save(sleep)))
             ctx.json(sleep)
             ctx.status(201)
         }
@@ -45,8 +54,11 @@ object SleepController {
 
 
     fun deleteSleepByid(ctx: Context) {
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val sleep = sleepDAO.deleteSleepbyId(ctx.pathParam("slp-id").toInt())
         if (sleep != null) {
+            ctx.json(mapper.writeValueAsString(sleepDAO.deleteSleepbyId(ctx.pathParam("slp-id").toInt())))
             ctx.status(204)
         } else
             ctx.status(400)
@@ -54,13 +66,14 @@ object SleepController {
 
 
     fun updatesleepbyid(ctx: Context) {
-        val sleep: Sleep = jsonToObject(ctx.body())
-        val id = sleepDAO.updateSleepbyId(sleep.id, sleep)
-        if (id != null) {
+        val sleep = sleepDAO.getSleepbyId(ctx.pathParam("slp-id").toInt())
+       if (sleep != null) {
+           val mapper = jacksonObjectMapper().registerModule(JodaModule())
+               .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+           val newsleep = mapper.readValue<Sleep>(ctx.body())
+           ctx.json(mapper.writeValueAsString(sleepDAO.updateSleepbyId(sleep.id, newsleep)))
+       }
 
-            ctx.json(sleep)
-            ctx.status(201)
-        }
 
 
     }

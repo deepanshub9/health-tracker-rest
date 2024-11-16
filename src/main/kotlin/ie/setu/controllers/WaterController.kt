@@ -20,9 +20,11 @@ object WaterController {
     }
 
     fun getWaterById(ctx: Context) {
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
         val id = waterDAO.getWaterIntake(ctx.pathParam("wat-id").toInt())
         if (id != null) {
-            ctx.json(id)
+            ctx.json(mapper.writeValueAsString(waterDAO.getWaterIntake(ctx.pathParam("wat-id").toInt())))
             ctx.status(200)
         } else {
             ctx.json(400)
@@ -49,19 +51,18 @@ object WaterController {
 
 
     fun updateWaterId(ctx: Context) {
-        val waterIntake: WaterIntake = jsonToObject(ctx.body())
-        val id = waterDAO.waterUpdatebyId(waterIntake.id, waterIntake)
-        if (id != null) {
-            ctx.json(waterIntake)
-            ctx.status(201)
+        val waterIntake = waterDAO.getWaterIntake(ctx.pathParam("wat-id").toInt())
 
+        if (waterIntake != null) {
+            val mapper = jacksonObjectMapper()
+                .registerModule(JodaModule()).configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            ctx.json(mapper.writeValueAsString(waterIntake))
+            ctx.status(200)
+        } else{
+            ctx.json(400)
         }
     }
 
-//        val mapper = jsonObjectMapper()
-//        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
-//        waterDAO.waterUpdatebyId(Water.id,  waterIntake)
-//        ctx.json(waterIntake)
 
 
 }
