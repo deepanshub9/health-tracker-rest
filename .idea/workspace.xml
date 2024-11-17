@@ -5,23 +5,50 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff774716-618a-47e8-b7fb-05cee9a7d6f8" name="Changes" comment="Completed WaterIntake functionality">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/repository/UserDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/controllers/UserControllerTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/Fixtures.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/helpers/ServiceContainer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/ActivityDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/HealthTipDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/SleepDAOTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/WaterDAOTest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/health-tracker.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/health-tracker.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/config/JavalinConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/ActivityController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTipController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTipController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/HealthTrackerController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/SleepController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/SleepController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/controllers/WaterController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/Activity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/Activity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/Sleep.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/Sleep.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/WaterIntake.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Activities.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Activities.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/SleepDb.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/SleepDb.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/db/Water.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/ActivityDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/SleepDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/SleepDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/UserDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/UserDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/ie/setu/domain/repository/WaterDAO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/helpers/Fixtures.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/ie/setu/repository/UserDAOTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/kotlin/ie/setu/repository/UserDAOTest.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="H:\test\main\covrage report1" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -61,22 +88,77 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.ActivityDAOTest$CreatActivity.executor": "Run",
+    "JUnit.ActivityDAOTest$CreatActivity.multiple activities added to table can be retrieved successfully.executor": "Run",
+    "JUnit.ActivityDAOTest$DeleteActivities.deleting activities when 1 or more exist for user id results in deletion.executor": "Run",
+    "JUnit.ActivityDAOTest$DeleteActivities.deleting activities when none exist for user id results in no deletion.executor": "Run",
+    "JUnit.ActivityDAOTest$DeleteActivities.executor": "Run",
+    "JUnit.ActivityDAOTest$ReadActivity.executor": "Run",
+    "JUnit.ActivityDAOTest$ReadActivity.get activity by user id that exists, results in a correct activitie(s) returned.executor": "Run",
+    "JUnit.ActivityDAOTest$ReadActivity.get activity by user id that has no activities, results in no record returned.executor": "Run",
+    "JUnit.ActivityDAOTest$ReadActivity.getting all activites from a populated table returns all rows.executor": "Run",
+    "JUnit.ActivityDAOTest$UpdateActivities.updating existing activity in table results in successful update.executor": "Run",
+    "JUnit.ActivityDAOTest.executor": "Run",
+    "JUnit.All in health-tracker-rest.executor": "Coverage",
+    "JUnit.HealthTipDAOTest$ReadHealth$CreateHealth.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth$UpdateHealthTip.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth$UpdateHealthTips.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth$UpdateHealthTips.update an existing health tip in the table.executor": "Debug",
+    "JUnit.HealthTipDAOTest$ReadHealth$deleteTips.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth.get all Tips from populated table.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth.get all Tips over empty table.executor": "Run",
+    "JUnit.HealthTipDAOTest$ReadHealth.get random health tip from a table with one entry.executor": "Run",
+    "JUnit.HealthTipDAOTest$UpdateHealthTips.executor": "Run",
+    "JUnit.HealthTipDAOTest$UpdateHealthTips.update an existing health tip in the table.executor": "Run",
+    "JUnit.HealthTipDAOTest$deleteTips.executor": "Run",
+    "JUnit.HealthTipDAOTest.executor": "Run",
+    "JUnit.HealthTrackerControllerTest$UpdateUsers.executor": "Run",
+    "JUnit.HealthTrackerControllerTest$UpdateUsers.updating a user when it exists, returns a 204 response.executor": "Run",
+    "JUnit.HealthTrackerControllerTest.executor": "Coverage",
+    "JUnit.SleepDAOTest$CreateSleep.executor": "Run",
+    "JUnit.SleepDAOTest$CreateSleep.multiple sleep added to table can be retrieved successfully.executor": "Run",
+    "JUnit.SleepDAOTest$CreateSleep.multiple weight added to table can be retrieved successfully.executor": "Run",
+    "JUnit.SleepDAOTest$DeleteGoals.deleting sleep when 1 or more exist for user id results in deletion.executor": "Run",
+    "JUnit.SleepDAOTest$DeleteGoals.executor": "Run",
+    "JUnit.SleepDAOTest$ReadSleep.executor": "Run",
+    "JUnit.SleepDAOTest$ReadSleep.get sleep by user id that exists, results in a correct sleep returned.executor": "Run",
+    "JUnit.SleepDAOTest$UpdateSleep.executor": "Run",
+    "JUnit.SleepDAOTest.executor": "Run",
     "JUnit.UserDAOTest$ReadUsers.executor": "Run",
     "JUnit.UserDAOTest$ReadUsers.getting all users from a populated table returns all rows.executor": "Run",
     "JUnit.UserDAOTest.deleting a non-existant user in table results in no deletion.executor": "Run",
     "JUnit.UserDAOTest.deleting an existing user in table results in record being deleted.executor": "Run",
-    "JUnit.UserDAOTest.executor": "Coverage",
+    "JUnit.UserDAOTest.executor": "Run",
     "JUnit.UserDAOTest.get user by id that doesn't exist, results in no user returned.executor": "Run",
     "JUnit.UserDAOTest.get user by id that exists, results in a correct user returned.executor": "Run",
     "JUnit.UserDAOTest.getting all users from a populated table returns all rows.executor": "Run",
+    "JUnit.WaterDAOTest$CreatWater.executor": "Run",
+    "JUnit.WaterDAOTest$CreatWater.multiple Water added to table can be retrieved successfully.executor": "Run",
+    "JUnit.WaterDAOTest$DeleteWater.deleting water when 1 or more exist for user id results in deletion.executor": "Run",
+    "JUnit.WaterDAOTest$DeleteWater.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.get all WaterDetails Users from populated table.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.get goal by user id that exists, results in a correct goals returned.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.get goal by user id that has no Water, results in no record water returned.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.get water by user id that exists, results in a correct water returned.executor": "Run",
+    "JUnit.WaterDAOTest$ReadWater.get water by user id that has no Water, results in no record water returned.executor": "Run",
+    "JUnit.WaterDAOTest$UpdateWater.executor": "Run",
+    "JUnit.WaterDAOTest$UpdateWater.update an existing water in the table.executor": "Run",
+    "JUnit.WaterDAOTest$UpdateWater.updating existing water in table results in successful update.executor": "Run",
+    "JUnit.WaterDAOTest.executor": "Run",
+    "JUnit.ie.setu in health-tracker-rest.executor": "Coverage",
+    "JUnit.ie.setu.repository in health-tracker-rest.executor": "Coverage",
+    "JUnit.kotlin in health-tracker-rest.executor": "Coverage",
+    "JUnit.repository in health-tracker-rest.executor": "Coverage",
     "Kotlin.AppKt.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.health-tracker-rest [validate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ToolWindow.Terminal.ShowToolbar": "false",
-    "git-widget-placeholder": "development",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "H:/test/main/covrage report1",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -86,92 +168,84 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="JUnit.UserDAOTest">
-    <configuration name="UserDAOTest$ReadUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="ie.setu.controllers.UserControllerTest" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.setu in health-tracker-rest">
+    <configuration name="All in health-tracker-rest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-tracker-rest" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ie.setu in health-tracker-rest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-tracker-rest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ie.setu.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ie.setu" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ie.setu.repository in health-tracker-rest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
       <module name="health-tracker-rest" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="ie.setu.repository.*" />
           <option name="ENABLED" value="true" />
         </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository.UserDAOTest" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest$ReadUsers" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDAOTest$ReadUsers.getting all users from a populated table returns all rows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="health-tracker-rest" />
-      <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository.UserDAOTest" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest$ReadUsers" />
-      <option name="METHOD_NAME" value="getting all users from a populated table returns all rows" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="health-tracker-rest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
+          <option name="PATTERN" value="ie.setu.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="ie.setu.repository" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDAOTest.deleting a non-existant user in table results in no deletion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="kotlin in health-tracker-rest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-tracker-rest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest" />
-      <option name="METHOD_NAME" value="deleting a non-existant user in table results in no deletion" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/kotlin" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDAOTest.deleting an existing user in table results in record being deleted" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="setu in health-tracker-rest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-tracker-rest" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="ie.setu.repository.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="ie.setu.repository" />
-      <option name="MAIN_CLASS_NAME" value="ie.setu.repository.UserDAOTest" />
-      <option name="METHOD_NAME" value="deleting an existing user in table results in record being deleted" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/kotlin/ie/setu" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ie.setu.AppKt" />
+      <module name="health-tracker-rest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserDAOTest" />
-        <item itemvalue="JUnit.UserDAOTest$ReadUsers.getting all users from a populated table returns all rows" />
-        <item itemvalue="JUnit.UserDAOTest$ReadUsers" />
-        <item itemvalue="JUnit.UserDAOTest.deleting an existing user in table results in record being deleted" />
-        <item itemvalue="JUnit.UserDAOTest.deleting a non-existant user in table results in no deletion" />
+        <item itemvalue="JUnit.setu in health-tracker-rest" />
+        <item itemvalue="JUnit.ie.setu in health-tracker-rest" />
+        <item itemvalue="JUnit.kotlin in health-tracker-rest" />
+        <item itemvalue="JUnit.All in health-tracker-rest" />
+        <item itemvalue="Kotlin.AppKt" />
       </list>
     </recent_temporary>
   </component>
@@ -222,6 +296,8 @@
       <workItem from="1731693542698" duration="3594000" />
       <workItem from="1731697179242" duration="12517000" />
       <workItem from="1731716276803" duration="7568000" />
+      <workItem from="1731840529759" duration="18406000" />
+      <workItem from="1731862053014" duration="1275000" />
     </task>
     <task id="LOCAL-00001" summary="Lab javalin commit">
       <option name="closed" value="true" />
@@ -434,8 +510,21 @@
     <option name="LAST_COMMIT_MESSAGE" value="Completed WaterIntake functionality" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/health_tracker_rest$ie_setu_in_health_tracker_rest.ic" NAME="ie.setu in health-tracker-rest Coverage Results" MODIFIED="1731862518358" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ie.setu.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/health_tracker_rest$All_in_health_tracker_rest.ic" NAME="All in health-tracker-rest Coverage Results" MODIFIED="1731862243790" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/health_tracker_rest$ie_setu_repository_in_health_tracker_rest.ic" NAME="ie.setu.repository in health-tracker-rest Coverage Results" MODIFIED="1731839213219" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ie.setu.repository.*</FILTER>
+      <FILTER>ie.setu.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/health_tracker_rest$UserDAOTest.ic" NAME="UserDAOTest Coverage Results" MODIFIED="1731761840822" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>ie.setu.repository.*</FILTER>
     </SUITE>
+    <SUITE FILE_PATH="coverage/health_tracker_rest$HealthTrackerControllerTest.ic" NAME="HealthTrackerControllerTest Coverage Results" MODIFIED="1731849132381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>ie.setu.controllers.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/health_tracker_rest$repository_in_health_tracker_rest.ic" NAME="repository in health-tracker-rest Coverage Results" MODIFIED="1731849179881" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
+    <SUITE FILE_PATH="coverage/health_tracker_rest$kotlin_in_health_tracker_rest.ic" NAME="kotlin in health-tracker-rest Coverage Results" MODIFIED="1731862324171" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

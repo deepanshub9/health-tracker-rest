@@ -47,12 +47,12 @@ class UserDAO {
         }
     }
 
-    fun save(user: User) {
+    fun save(user: User) :Int {
         return transaction {
             Users.insert {
                 it[name] = user.name
                 it[email] = user.email
-            }
+            } get Users.id
         }
     }
 
