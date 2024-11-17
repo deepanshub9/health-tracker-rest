@@ -3,6 +3,7 @@ package ie.setu.config
 import ie.setu.controllers.*
 import ie.setu.controllers.ActivityController.getAllActivities
 import ie.setu.domain.db.HealthTips
+import ie.setu.domain.db.Water
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.json.JavalinJackson
 import io.javalin.Javalin
@@ -15,10 +16,12 @@ class JavalinConfig {
         val app = Javalin.create().apply {
             exception(Exception::class.java) { e, ctx ->
                 println("ERROR: Exception occurred: ${e.message}")
-                e.printStackTrace() }
+                e.printStackTrace()
+            }
             error(404) { ctx ->
                 println("WARN: 404 - Not Found error triggered for request: ${ctx.url()}")
-                ctx.json("404 - Not Found") }
+                ctx.json("404 - Not Found")
+            }
         }.start("0.0.0.0", getRemoteAssignedPort())
 
         println("INFO: Javalin started on port ${app.port()}")
@@ -50,6 +53,7 @@ class JavalinConfig {
         //Activity - API CRUD
         app.get("/api/activities", ActivityController::getAllActivities)
         app.get("/api/activities/{act-id}", ActivityController::getActivityById)
+        app.get("api/activities/{user-id}", ActivityController::getActivitiesByUserId)
 
         app.post("/api/activities", ActivityController::addActivity)
         app.delete("/api/activities/{act-id}", ActivityController::deleteActivityById)
@@ -58,6 +62,7 @@ class JavalinConfig {
         //WaterIntake - API CRUD
         app.get("/api/Water", WaterController::getWaterDetails)
         app.get("/api/Water/{wat-id}", WaterController::getWaterById)
+        app.get("api/Water/{user-id}", WaterController::getwaterbyUserId)
 
         app.delete("/api/Water/{wat-id}", WaterController::deleteWaterById)
         app.post("/api/Water", WaterController::addWater)
@@ -78,6 +83,7 @@ class JavalinConfig {
         app.get("/api/Sleep/{slp-id}", SleepController::getsleepById)
         app.post("/api/Sleep", SleepController::addsleep)
 
+        app.get("api/Sleep/{user-id}", SleepController::getSleepByUserId)
         app.delete("/api/Sleep/{slp-id}", SleepController::deleteSleepByid)
         app.patch("/api/Sleep/{slp-id}", SleepController::updatesleepbyid)
 

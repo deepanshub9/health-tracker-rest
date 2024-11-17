@@ -5,15 +5,13 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import io.javalin.http.Context
 import ie.setu.domain.Sleep
-
 import ie.setu.utils.jsonToObject
-
-
 import ie.setu.domain.repository.SleepDAO
-
-
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
+
+
+import ie.setu.utils.jsonObjectMapper
 
 
 object SleepController {
@@ -39,6 +37,14 @@ object SleepController {
         }
 
     }
+
+    fun getSleepByUserId(ctx: Context) {
+        val sleep = sleepDAO.getsleepByUserId(ctx.pathParam("user-id").toInt())
+        if (sleep.isNotEmpty()) {
+            ctx.json(jsonObjectMapper().writeValueAsString(sleep))
+        }
+    }
+
 
     fun addsleep(ctx: Context) {
         val mapper = jacksonObjectMapper().registerModule(JodaModule())
@@ -67,13 +73,12 @@ object SleepController {
 
     fun updatesleepbyid(ctx: Context) {
         val sleep = sleepDAO.getSleepbyId(ctx.pathParam("slp-id").toInt())
-       if (sleep != null) {
-           val mapper = jacksonObjectMapper().registerModule(JodaModule())
-               .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-           val newsleep = mapper.readValue<Sleep>(ctx.body())
-           ctx.json(mapper.writeValueAsString(sleepDAO.updateSleepbyId(sleep.id, newsleep)))
-       }
-
+        if (sleep != null) {
+            val mapper = jacksonObjectMapper().registerModule(JodaModule())
+                .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+            val newsleep = mapper.readValue<Sleep>(ctx.body())
+            ctx.json(mapper.writeValueAsString(sleepDAO.updateSleepbyId(sleep.id, newsleep)))
+        }
 
 
     }

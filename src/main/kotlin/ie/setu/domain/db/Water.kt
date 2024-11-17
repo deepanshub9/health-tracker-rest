@@ -1,8 +1,7 @@
 package ie.setu.domain.db
 
-import ie.setu.domain.db.SleepDb.autoIncrement
+
 import org.jetbrains.exposed.sql.Table
-import org.joda.time.DateTime
 import org.jetbrains.exposed.sql.jodatime.datetime
 
 

@@ -8,7 +8,7 @@ import io.javalin.http.Context
 import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.joda.JodaModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
-import ie.setu.utils.jsonToObject
+
 
 object WaterController {
     private val waterDAO = WaterDAO()
@@ -33,6 +33,16 @@ object WaterController {
 
     }
 
+
+    fun getwaterbyUserId(ctx: Context) {
+        val water = waterDAO.getWaterByUserId(ctx.pathParam("user-id").toInt())
+        if (water.isNotEmpty()) {
+            ctx.json(water)
+            ctx.status(200)
+        }
+    }
+
+
     fun deleteWaterById(ctx: Context) {
         if (waterDAO.deleteWaterIntake(ctx.pathParam("wat-id").toInt()) != 0)
             ctx.json(204)
@@ -49,20 +59,13 @@ object WaterController {
 
     }
 
-
     fun updateWaterId(ctx: Context) {
-        val waterIntake = waterDAO.getWaterIntake(ctx.pathParam("wat-id").toInt())
+        val mapper = jacksonObjectMapper()
+        val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
+        waterDAO.waterUpdatebyId(waterIntake.id, waterIntake)
+        ctx.json(waterIntake)
 
-        if (waterIntake != null) {
-            val mapper = jacksonObjectMapper()
-                .registerModule(JodaModule()).configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
-            ctx.json(mapper.writeValueAsString(waterIntake))
-            ctx.status(200)
-        } else{
-            ctx.json(400)
-        }
     }
-
 
 
 }

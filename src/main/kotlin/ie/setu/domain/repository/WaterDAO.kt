@@ -32,6 +32,17 @@ class WaterDAO {
 
     }
 
+    fun getWaterByUserId(userId: Int): List<WaterIntake> {
+        return transaction {
+            Water
+                .selectAll().where { Water.userid eq userId }
+                .map {
+                    mapToWaterIntake(it)
+                }
+        }
+    }
+
+
     fun deleteWaterIntake(id: Int): Int {
         return transaction { Water.deleteWhere { Water.id eq id } }
 

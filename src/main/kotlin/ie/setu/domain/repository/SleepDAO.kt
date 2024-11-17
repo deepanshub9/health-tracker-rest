@@ -5,7 +5,6 @@ import ie.setu.domain.Sleep
 import ie.setu.domain.db.SleepDb
 
 import ie.setu.utils.mapToSleep
-import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
@@ -32,6 +31,17 @@ class SleepDAO {
             SleepDb.selectAll().where { SleepDb.id eq id }.map { mapToSleep(it) }.firstOrNull()
         }
     }
+
+    fun getsleepByUserId(userId: Int): List<Sleep> {
+        return transaction {
+            SleepDb
+                .selectAll().where { SleepDb.userid eq userId }
+                .map {
+                    mapToSleep(it)
+                }
+        }
+    }
+
 
     fun save(sleep: Sleep) {
         return transaction {

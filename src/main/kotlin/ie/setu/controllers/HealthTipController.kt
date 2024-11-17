@@ -2,12 +2,9 @@ package ie.setu.controllers
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-
-
 import ie.setu.domain.repository.HealthTipDAO
 import ie.setu.domain.HealthTip
 import ie.setu.utils.jsonToObject
-
 import io.javalin.http.Context
 
 object HealthTipController {
@@ -59,6 +56,7 @@ object HealthTipController {
         val mapper = jacksonObjectMapper()
         val healthTip = mapper.readValue<HealthTip>(ctx.body())
         healthTipDAO.updateHealthTip(healthTip.id, healthTip)
+        ctx.status(200)
         ctx.json(healthTip)
 
     }
