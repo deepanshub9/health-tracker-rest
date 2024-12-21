@@ -38,6 +38,15 @@ fun mapToWaterIntake(it: ResultRow) = WaterIntake(
 
 )
 
+fun mapToBmi(it: ResultRow) = Bmi(
+    id = it[Bmies.id],
+    weight = it[Bmies.weight],
+    height = it[Bmies.height],
+    bmiCalculator = it[Bmies.bmiCalculator],
+    timestamp = it[Bmies.timestamp],
+    userId = it[Bmies.userId]
+)
+
 fun mapToHealthTip(it: ResultRow) = HealthTip(
 
     id = it[HealthTips.id],

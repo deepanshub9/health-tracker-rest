@@ -473,6 +473,90 @@ paths:
                 items:
                   $ref: '#/components/schemas/SleepRecord'
 
+
+  /api/bmi:
+    get:
+      summary: Get all BMI records
+      description: Retrieve a list of all BMI records.
+      responses:
+        '200':
+          description: A list of BMI records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BMI'
+    post:
+      summary: Calculate and save BMI
+      description: Calculate BMI based on provided input and save the result.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BMIRequest'
+      responses:
+        '201':
+          description: BMI calculated and saved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+
+  /api/bmi/{bmi-id}:
+    get:
+      summary: Get a BMI record by ID
+      description: Retrieve a specific BMI record by its ID.
+      parameters:
+        - name: bmi-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the BMI record.
+      responses:
+        '200':
+          description: Details of the BMI record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BMI'
+    delete:
+      summary: Delete a BMI record by ID
+      description: Remove a specific BMI record by its ID.
+      parameters:
+        - name: bmi-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the BMI record.
+      responses:
+        '204':
+          description: BMI record deleted successfully
+
+  /api/bmi/users/{user-id}:
+    get:
+      summary: Get BMI records by user ID
+      description: Retrieve all BMI records associated with a specific user.
+      parameters:
+        - name: user-id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The unique ID of the user.
+      responses:
+        '200':
+          description: A list of BMI records for the user
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BMI'
+
 components:
   schemas:
     User:
@@ -579,3 +663,52 @@ components:
           type: number
           format: float
           description: The number of hours the user slept on that date.
+
+
+    BMI:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique ID of the BMI record.
+        userId:
+          type: integer
+          description: The ID of the user associated with the BMI record.
+        height:
+          type: number
+          format: float
+          description: Height of the user in meters.
+        weight:
+          type: number
+          format: float
+          description: Weight of the user in kilograms.
+        bmiValue:
+          type: number
+          format: float
+          description: Calculated BMI value.
+        category:
+          type: string
+          description: BMI category (e.g., Underweight, Normal, Overweight, Obese).
+        date:
+          type: string
+          format: date
+          description: The date the BMI record was created.
+
+    BMIRequest:
+      type: object
+      required:
+        - height
+        - weight
+        - userId
+      properties:
+        height:
+          type: number
+          format: float
+          description: Height of the user in meters.
+        weight:
+          type: number
+          format: float
+          description: Weight of the user in kilograms.
+        userId:
+          type: integer
+          description: The ID of the user for whom the BMI is being calculated.

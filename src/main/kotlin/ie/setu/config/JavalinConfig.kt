@@ -7,27 +7,27 @@ import ie.setu.domain.db.Water
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.json.JavalinJackson
 import io.javalin.Javalin
+import io.javalin.vue.VueComponent
 
 
 class JavalinConfig {
 
-    fun startJavalinService(): Javalin {
-        println("INFO: Starting Javalin service...")
-        val app = Javalin.create().apply {
-            exception(Exception::class.java) { e, ctx ->
-                println("ERROR: Exception occurred: ${e.message}")
-                e.printStackTrace()
-            }
-            error(404) { ctx ->
-                println("WARN: 404 - Not Found error triggered for request: ${ctx.url()}")
-                ctx.json("404 - Not Found")
-            }
-        }.start("0.0.0.0", getRemoteAssignedPort())
 
-        println("INFO: Javalin started on port ${app.port()}")
+    fun startJavalinService(): Javalin {
+        val app = Javalin.create{
+            //added this jsonMapper for our integration tests - serialise objects to json
+            it.jsonMapper(JavalinJackson(jsonObjectMapper()))
+            it.staticFiles.enableWebjars()
+            it.vue.vueInstanceNameInJs = "app" // only required for Vue 3, is defined in layout.html
+        }.apply {
+            exception(Exception::class.java) { e, _ -> e.printStackTrace() }
+            error(404) { ctx -> ctx.json("404 : Not Found") }
+        }.start(getRemoteAssignedPort())
+
         registerRoutes(app)
         return app
     }
+
 
     private fun getRemoteAssignedPort(): Int {
         val remotePort = System.getenv("PORT")
@@ -53,42 +53,66 @@ class JavalinConfig {
         //Activity - API CRUD
         app.get("/api/activities", ActivityController::getAllActivities)
         app.get("/api/activities/{act-id}", ActivityController::getActivityById)
-        app.get("api/activities/{user-id}", ActivityController::getActivitiesByUserId)
+        app.get("api/activities/users/{user-id}", ActivityController::getActivitiesByUserId)
 
         app.post("/api/activities", ActivityController::addActivity)
         app.delete("/api/activities/{act-id}", ActivityController::deleteActivityById)
         app.patch("/api/activities/{act-id}", ActivityController::updateActivity)
 
         //WaterIntake - API CRUD
-        app.get("/api/Water", WaterController::getWaterDetails)
-        app.get("/api/Water/{wat-id}", WaterController::getWaterById)
-        app.get("api/Water/{user-id}", WaterController::getwaterbyUserId)
+        app.get("/api/water", WaterController::getWaterDetails)
+        app.get("/api/water/{wat-id}", WaterController::getWaterById)
+        app.get("/api/water/users/{user-id}", WaterController::getwaterbyUserId)
 
-        app.delete("/api/Water/{wat-id}", WaterController::deleteWaterById)
-        app.post("/api/Water", WaterController::addWater)
-        app.patch("/api/Water/{wat-id}", WaterController::updateWaterId)
+        app.delete("/api/water/{wat-id}", WaterController::deleteWaterById)
+        app.post("/api/water", WaterController::addWater)
+        app.patch("/api/water/{wat-id}", WaterController::updateWaterId)
 
         //HealthTip - API CRUD
-        app.get("/api/HealthTips", HealthTipController::getAllHealthTip)
-        app.get("/api/HealthTips/{hth-id}", HealthTipController::getHealthTipById)
-        app.post("/api/HealthTips/", HealthTipController::addHealthTip)
+        app.get("/api/healthTips", HealthTipController::getAllHealthTip)
+        app.get("/api/healthTips/{hth-id}", HealthTipController::getHealthTipById)
+        app.post("/api/healthTips/", HealthTipController::addHealthTip)
 
-        app.post("/api/HealthTips", HealthTipController::addhealthTip)
-        app.delete("/api/HealthTips/{hth-id}", HealthTipController::deleteHealthTipById)
-        app.patch("/api/HealthTips/{hth-id}", HealthTipController::updateHealthTip)
+        app.post("/api/healthTips", HealthTipController::addhealthTip)
+        app.delete("/api/healthTips/{hth-id}", HealthTipController::deleteHealthTipById)
+        app.patch("/api/healthTips/{hth-id}", HealthTipController::updateHealthTip)
 
 
         //Sleep - API CRUD
-        app.get("/api/Sleep", SleepController::getsleepUser)
-        app.get("/api/Sleep/{slp-id}", SleepController::getsleepById)
-        app.post("/api/Sleep", SleepController::addsleep)
+        app.get("/api/sleep", SleepController::getsleepUser)
+        app.get("/api/sleep/{slp-id}", SleepController::getsleepById)
+        app.post("/api/sleep", SleepController::addsleep)
 
-        app.get("api/Sleep/{user-id}", SleepController::getSleepByUserId)
-        app.delete("/api/Sleep/{slp-id}", SleepController::deleteSleepByid)
-        app.patch("/api/Sleep/{slp-id}", SleepController::updatesleepbyid)
+        app.get("/api/sleep/users/{user-id}", SleepController::getSleepByUserId)
+        app.delete("/api/sleep/{slp-id}", SleepController::deleteSleepByid)
+        app.patch("/api/sleep/{slp-id}", SleepController::updatesleepbyid)
+
+
+        // BMI - API CRUD
+        app.get("/api/bmi", BMIController::getAllBmi)
+        app.get("/api/bmi/{bmi-id}", BMIController::getByBmiId)
+        app.get("/api/bmi/users/{user-id}", BMIController::getBmiByUserId)
+
+        app.delete("/api/bmi/{bmi-id}", BMIController::deleteBmiId)
+        app.post("/api/bmi", BMIController::calculateBmi)
+
+
+
+
+        // The @routeComponent that we added in layout.html earlier will be replaced
+        // by the String inside the VueComponent. This means a call to / will load
+        // the layout and display our <home-page> component.
+        app.get("/", VueComponent("<home-page></home-page>"))
+        app.get("/users", VueComponent("<user-overview></user-overview>"))
+        app.get("/users/{user-id}", VueComponent("<user-profile></user-profile>"))
+        app.get("/users/{user-id}/activities", VueComponent("<user-activity-overview></user-activity-overview>"))
+
+
 
 
     }
+
+
 
 
 }

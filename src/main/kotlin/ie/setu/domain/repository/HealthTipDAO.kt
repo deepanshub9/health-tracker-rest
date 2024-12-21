@@ -42,6 +42,9 @@ class HealthTipDAO {
     }
 
 
+
+
+
     fun deleteHeatlhTipbyId(id: Int): Int? {
         return transaction { HealthTips.deleteWhere { HealthTips.id eq id } }
     }

@@ -5,7 +5,7 @@ import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.jodatime.datetime
 
 
-object SleepDb : Table("Sleep") {
+object SleepDb : Table("sleep") {
     val id = integer("id").autoIncrement()
     val duration = double("duration")
     val date = datetime("date")
