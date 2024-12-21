@@ -4,7 +4,7 @@ import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.jodatime.datetime
 
 
-object Activities : Table("Activity") {
+object Activities : Table("activity") {
     val id = integer(name = "activityid").autoIncrement()
     val description = varchar("description", 255)
     val duration = double("duration")

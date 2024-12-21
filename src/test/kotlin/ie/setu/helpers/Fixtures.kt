@@ -18,6 +18,8 @@ val validEmail = "deep@test.com"
 val updatedName = "Test User 2"
 val updatedEmail = "deepanshu@gmail.com"
 
+val updateddate = DateTime.parse("2020-06-11T05:59:27.258Z")
+val updatedtargetBmi =15.00
 
 val users = arrayListOf<User>(
     User(name = "Alice Wonderland", email = "alice@wonderland.com", id = 1),
@@ -30,6 +32,12 @@ val activities = arrayListOf<Activity>(
     Activity(id = 1, description = "Running", duration = 20.0, calories = 330, started = DateTime.now(), userId = 1),
     Activity(id = 2, description = "Gym", duration = 30.0, calories = 280, started = DateTime.now(), userId = 1),
     Activity(id = 3, description = "Walking", duration = 40.0, calories = 220, started = DateTime.now(), userId = 2)
+)
+
+val bmies = arrayListOf<Bmi>(
+    Bmi(id = 1, userId = 1,  weight = 60.0, height = 168.0, bmiCalculator = 21.258503401360546, timestamp=DateTime.now()),
+    Bmi(id = 2, userId = 2,  weight = 59.0, height = 154.0, bmiCalculator = 24.87771968291449, timestamp=DateTime.now()),
+    Bmi(id = 3, userId = 3,  weight = 58.0, height = 150.0, bmiCalculator = 25.77777777777778, timestamp=DateTime.now())
 )
 
 val sleep = arrayListOf<Sleep>(
@@ -79,6 +87,14 @@ fun populateWaterIntake(): WaterDAO {
     waterDAO.save(waterIntake[2])
     return waterDAO
 
+}
+fun populatebmisTable(): BmiDAO {
+    SchemaUtils.create(Bmies)
+    val bmiDAO = BmiDAO()
+    bmiDAO .save(bmies[0])
+    bmiDAO .save(bmies[1])
+    bmiDAO .save(bmies[2])
+    return bmiDAO
 }
 
 fun populateSleepTable(): SleepDAO {

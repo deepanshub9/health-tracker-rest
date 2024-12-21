@@ -35,12 +35,19 @@ object WaterController {
 
 
     fun getwaterbyUserId(ctx: Context) {
-        val water = waterDAO.getWaterByUserId(ctx.pathParam("user-id").toInt())
-        if (water.isNotEmpty()) {
-            ctx.json(water)
+        val mapper = jacksonObjectMapper().registerModule(JodaModule())
+            .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+        val waterList = waterDAO.getWaterByUserId(ctx.pathParam("user-id").toInt())
+
+        if (waterList.isNotEmpty()) {
+            ctx.json(mapper.writeValueAsString(waterList))
             ctx.status(200)
+        } else {
+            ctx.status(400)
         }
     }
+
+
 
 
     fun deleteWaterById(ctx: Context) {

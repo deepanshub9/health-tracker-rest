@@ -1,1 +1,42 @@
-I will create a heathtracker app with some tracking functionality. Users will be able to interact with this app. This app is a full-stack app with a frontend and backend
+<h2> Health Tracker Rest API</h2>
+Health tracker app is a robust kotlin based web application. Its provide essential feature for effectively to requried tracking user
+health and wellness.
+
+
+<h3>Tech Stack</h3>
+
+Frontend: Vue.js + Bootstrap – It is a JavaScript framework combined with a responsive CSS framework. <br>
+Backend: Kotlin + Javalin – Lightweight web framework for efficient server-side processing. <br>
+DevOps & Cloud: GitHub CI/CD, Railway.com (cloud), Render.com (database) – Tools for continuous integration,
+deployment, and reliable cloud hosting solutions. <br>
+Testing: Unit, Selenium, Mocking – It's ensure application reliability and performance.<br>
+
+<h3>Features</h3>
+<li>User Management</li><br>
+<li>User Activity</li><br>
+<li>BMI Calculator</li><br>
+<li>User WaterIntake</li><br>
+<li>User Sleep</li><br>
+<li>Health Tips</li><br>
+
+
+How it works
+The application was made mainly to demo the functionality of Javalin framework.
+
+
+The application backend built with:
+
+<li> Kotlin as programming language</li> <br/>
+<li> Javalin as web framework</li>  <br/>
+<li> Jackson as data bind serialization/deserialization</li>  <br/>
+<li> H2 as database for integration tests</li>  <br/>
+<li> Exposed as Sql framework to persistence layer</li> <br/>
+<li> Railway to deploy, monitor and automatically scale the app</li>  <br/>
+<li> PostgreSQL as database</li> <br/>
+
+Tests: junit Unirest to call endpoints in tests Getting started You need just JVM installed.
+
+The server is configured to start local on The application will be accessible at http://localhost:7001 with API context.
+
+Domain: 
+[https://healthtrackerrest-production-cb60.up.railway.app/](https://health-tracker-rest-production-6ae2.up.railway.app/api/HealthTips)
