@@ -1,4 +1,5 @@
 <h2> Health Tracker Rest API</h2>
+
 Health tracker app is a robust kotlin based web application. Its provide essential feature for effectively to requried tracking user
 health and wellness.
 
@@ -20,8 +21,10 @@ Testing: Unit, Selenium, Mocking – It's ensure application reliability and per
 <li>Health Tips</li><br>
 
 
+
 How it works
 The application was made mainly to demo the functionality of Javalin framework.
+
 
 
 The application backend built with:
@@ -34,9 +37,9 @@ The application backend built with:
 <li> Railway to deploy, monitor and automatically scale the app</li>  <br/>
 <li> PostgreSQL as database</li> <br/>
 
+
 Tests: junit Unirest to call endpoints in tests Getting started You need just JVM installed.
 
 The server is configured to start local on The application will be accessible at http://localhost:7001 with API context.
 
-Domain: 
-[https://healthtrackerrest-production-cb60.up.railway.app/](https://health-tracker-rest-production-6ae2.up.railway.app/api/HealthTips)
+Domain: [https://healthtrackerrest-production-cb60.up.railway.app/](https://health-tracker-rest-production-6ae2.up.railway.app/api/HealthTips)
