@@ -7,6 +7,7 @@ import ie.setu.domain.db.Water
 import ie.setu.utils.jsonObjectMapper
 import io.javalin.json.JavalinJackson
 import io.javalin.Javalin
+import io.javalin.apibuilder.ApiBuilder.get
 import io.javalin.vue.VueComponent
 
 
@@ -19,6 +20,12 @@ class JavalinConfig {
             it.jsonMapper(JavalinJackson(jsonObjectMapper()))
             it.staticFiles.enableWebjars()
             it.vue.vueInstanceNameInJs = "app" // only required for Vue 3, is defined in layout.html
+            it.bundledPlugins.enableCors{cors->
+                cors.addRule{
+                    crs-> crs.allowHost("http://localhost:7001")
+                    crs.allowCredentials = true;
+                }
+            }
         }.apply {
             exception(Exception::class.java) { e, _ -> e.printStackTrace() }
             error(404) { ctx -> ctx.json("404 : Not Found") }
@@ -106,7 +113,7 @@ class JavalinConfig {
         app.get("/users", VueComponent("<user-overview></user-overview>"))
         app.get("/users/{user-id}", VueComponent("<user-profile></user-profile>"))
         app.get("/users/{user-id}/activities", VueComponent("<user-activity-overview></user-activity-overview>"))
-
+        app.get("/activities", VueComponent("<activity-overview></activity-overview>"))
 
 
 
