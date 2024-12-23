@@ -9,8 +9,10 @@ import ie.setu.utils.jsonObjectMapper
 import ie.setu.utils.jsonToObject
 import io.javalin.http.Context
 import ie.setu.domain.repository.ActivityDAO
+import ie.setu.domain.repository.UserDAO
 
 object ActivityController {
+    private val userDao = UserDAO()
     private val activityDao = ActivityDAO()
 
     fun getAllActivities(ctx: Context) {
@@ -41,16 +43,20 @@ object ActivityController {
     }
 
     fun addActivity(ctx: Context) {
+
         val mapper = jacksonObjectMapper().registerModule(JodaModule())
             .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
+        // Convert JSON data of the body to Activity object
         val activity: Activity = jsonToObject(ctx.body())
         val id = activityDao.save(activity)
         if (id != null) {
-            ctx.json(mapper.writeValueAsString(activityDao.save(activity)))
+            activity.id = id
             ctx.json(activity)
             ctx.status(201)
         }
     }
+
+
 
 
     fun deleteActivityById(ctx: Context) {

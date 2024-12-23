@@ -1,5 +1,6 @@
 package ie.setu.domain.db
 
+import org.jetbrains.exposed.sql.ReferenceOption
 import org.jetbrains.exposed.sql.Table
 import org.jetbrains.exposed.sql.jodatime.datetime
 
@@ -10,6 +11,6 @@ object Activities : Table("activity") {
     val duration = double("duration")
     val started = datetime("started")
     val calories = integer("calories")
-    val userid = integer(name = "userid")
+    val userid = integer(name = "userid").references(Users.id, onDelete = ReferenceOption.CASCADE)
 
 }
