@@ -51,6 +51,10 @@
           <a :href="`/users/${user.id}/sleep`" class="card card-body" style="margin-right: 15px; cursor: pointer">User Sleep</a>
           <a :href="`/users/${user.id}/bmi`" class="card card-body" style="margin-right: 15px; cursor: pointer">User BMI</a>
         </div>
+        <br>
+        <div class="d-flex flex-row flex-nowrap">
+          <a :href="`/users/${user.id}/water`" class="card card-body" style="margin-right: 15px; cursor: pointer">User Water Intake</a>
+         </div>
       </div>
 
     </div>

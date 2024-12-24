@@ -66,13 +66,16 @@ object WaterController {
 
     }
 
+
     fun updateWaterId(ctx: Context) {
         val mapper = jacksonObjectMapper()
+        mapper.registerModule(JodaModule())
+        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
         val waterIntake = mapper.readValue<WaterIntake>(ctx.body())
         waterDAO.waterUpdatebyId(waterIntake.id, waterIntake)
         ctx.json(waterIntake)
-
     }
+
 
 
 }
