@@ -42,19 +42,15 @@ class BmiDAO {
 
     fun save(bmi: Bmi): Int {
         val bmiCalculator = calculateBmi(bmi.weight, bmi.height)
-
-
-        return transaction {
+             return transaction {
             Bmies.insert {
                 it[weight] = bmi.weight
                 it[height] = bmi.height
                 it[Bmies.bmiCalculator] = bmiCalculator
-
                 it[userId] = bmi.userId
                 it[timestamp] = bmi.timestamp
-            }
-
-        } get Bmies.id
+            } get Bmies.id
+        }
 
 
     }

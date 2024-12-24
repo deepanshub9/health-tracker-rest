@@ -115,6 +115,7 @@ class JavalinConfig {
         app.get("/users/{user-id}/activities", VueComponent("<user-activity-overview></user-activity-overview>"))
         app.get("/activities", VueComponent("<activity-overview></activity-overview>"))
         app.get("/users/{user-id}/sleep", VueComponent("<user-sleep></user-sleep>"))
+        app.get("/users/{user-id}/bmi", VueComponent("<user-bmi-overview></user-bmi-overview>"))
 
     }
 
