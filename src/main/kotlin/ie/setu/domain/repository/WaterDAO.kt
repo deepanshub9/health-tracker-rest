@@ -52,7 +52,6 @@ class WaterDAO {
     fun save(waterIntake: WaterIntake) {
         return transaction {
             Water.insert {
-                it[id] = waterIntake.id
                 it[userid] = waterIntake.userid
                 it[litres] = waterIntake.litres
                 it[dateofdrinking] = waterIntake.dateofdrinking
