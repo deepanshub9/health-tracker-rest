@@ -117,6 +117,7 @@ class JavalinConfig {
         app.get("/users/{user-id}/sleep", VueComponent("<user-sleep></user-sleep>"))
         app.get("/users/{user-id}/bmi", VueComponent("<user-bmi-overview></user-bmi-overview>"))
         app.get("/users/{user-id}/water", VueComponent("<user-water></user-water>"))
+        app.get("/healthTips", VueComponent("<health-tips></health-tips>"))
     }
 
 

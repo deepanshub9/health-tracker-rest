@@ -11,7 +11,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto">
+          <ul class="navbar-nav me-auto nav-tabs">
             <li class="nav-item active">
               <a class="nav-link" href="/users">
                 Users <span class="sr-only">(current)</span>
@@ -19,6 +19,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/activities">Activities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/healthTips">HealthTip</a>
             </li>
           </ul>
         </div>
@@ -41,7 +44,11 @@ app.component("app-layout", {template: "#app-layout"});
 
 <style>
 .navbar {
-  background-color: #e3f2fd;
+  background-color: #B361EB;
+  padding: 10px 15px;
+}
+.nav-link:hover{
+  color: #0d67da !important;
 }
 </style>
 

@@ -51,7 +51,7 @@
                      placeholder="In minutes...">
             </div>
 
-            <div class="form-group col-md-4" style="padding: 5px 0px;">
+            <div class="form-group col-md-4" style="padding: 5px 0px 15px 0px;">
               <label for="inputCal">Calories</label>
               <input type="text" class="form-control" id="inputCal" v-model="formData.calories"
                      placeholder="Estimated calories burned...">
@@ -139,7 +139,7 @@ app.component("user-activity-overview", {
             this.activities.push(response.data)
             console.log(response);
             console.log(this.formData);
-            this.hideForm = true;  // Hide the form when user submitted data
+            this.hideForm = true;  // Activity form is hide when user submitted data
           })
           .catch(error => {
             console.log(error)
@@ -161,3 +161,14 @@ app.component("user-activity-overview", {
   }
 });
 </script>
+
+<style>
+.card-header{
+  background-color: #e0bcf8 !important;
+}
+.btn-primary:hover{
+    background-color: #e0bcf8 !important;
+    color: #171717;
+}
+
+</style>

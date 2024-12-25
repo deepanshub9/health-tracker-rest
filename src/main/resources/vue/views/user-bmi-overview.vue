@@ -25,11 +25,11 @@
               <label for="inputWeight">Weight (kg)</label>
               <input type="text" class="form-control" v-model="formData.weight" name="weight" placeholder="Weight (kg)" />
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3 ">
               <label for="inputHeight">Height (cm)</label>
               <input type="text" class="form-control" v-model="formData.height" name="height" placeholder="Height (cm)" />
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-4 mb-3 calbmi">
               <button type="button" @click="calculateBmi()" class="btn btn-primary">
                 <i class="fas fa-calculator"></i> Calculate BMI
               </button>
@@ -110,3 +110,15 @@ app.component("user-bmi-overview", {
   },
 });
 </script>
+<style>
+.card-header{
+  background-color: #e0bcf8 !important;
+}
+.calbmi {
+  padding-top: 23px !important;
+}
+.btn-primary:hover{
+  background-color: #e0bcf8 !important;
+  color: #171717;
+}
+</style>
