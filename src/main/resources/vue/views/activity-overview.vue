@@ -79,3 +79,9 @@ app.component("activity-overview", {
   }
 });
 </script>
+
+<style>
+.card-header{
+  background-color: #e0bcf8 !important;
+}
+</style>

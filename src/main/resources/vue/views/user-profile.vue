@@ -45,16 +45,17 @@
           </div>
         </form>
       </div>
-      <div class="container-fluid py-2" v-if="user">
+      <div class="container-fluid py-2 " v-if="user">
         <div class="d-flex flex-row flex-nowrap">
-          <a :href="`/users/${user.id}/activities`" class="card card-body" style="margin-right: 15px; cursor: pointer">User Activities</a>
-          <a :href="`/users/${user.id}/sleep`" class="card card-body" style="margin-right: 15px; cursor: pointer">User Sleep</a>
-          <a :href="`/users/${user.id}/bmi`" class="card card-body" style="margin-right: 15px; cursor: pointer">User BMI</a>
+          <a :href="`/users/${user.id}/activities`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Activities</a>
+          <a :href="`/users/${user.id}/sleep`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Sleep</a>
+          <a :href="`/users/${user.id}/bmi`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User BMI</a>
         </div>
         <br>
         <div class="d-flex flex-row flex-nowrap">
-          <a :href="`/users/${user.id}/water`" class="card card-body" style="margin-right: 15px; cursor: pointer">User Water Intake</a>
-         </div>
+          <a :href="`/users/${user.id}/water`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Water Intake</a>
+          <a :href="`/healthTips`" class="card card-body us-btn1" style="margin-right: 15px; cursor: pointer">User Health Tip</a>
+        </div>
       </div>
 
     </div>
@@ -118,3 +119,20 @@ app.component("user-profile", {
   }
 });
 </script>
+<style>
+.card-header{
+  background-color: #e0bcf8 !important;
+}
+.card-body {
+  text-align: center;
+  text-decoration: none;
+}
+
+
+.us-btn1:hover{
+    background-color: #e0bcf8 !important;
+    color: #282829;
+  }
+
+
+</style>

@@ -53,8 +53,6 @@ object HealthTrackerController {
     }
 
     fun updateUser(ctx: Context) {
-
-
         val foundUser: User = jsonToObject(ctx.body())
         if ((userDao.update(id = ctx.pathParam("user-id").toInt(), user = foundUser)) != 0)
             ctx.status(204)
