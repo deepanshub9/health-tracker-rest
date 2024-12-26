@@ -29,9 +29,9 @@ val users = arrayListOf<User>(
 )
 
 val activities = arrayListOf<Activity>(
-    Activity(id = 1, description = "Running", duration = 20.0, calories = 330, started = DateTime.now(), userId = 1),
-    Activity(id = 2, description = "Gym", duration = 30.0, calories = 280, started = DateTime.now(), userId = 1),
-    Activity(id = 3, description = "Walking", duration = 40.0, calories = 220, started = DateTime.now(), userId = 2)
+    Activity(id = 1, description = "Running", duration = 30.0, calories = 330, started = DateTime.now(), userId = 1),
+    Activity(id = 2, description = "Swimming", duration = 60.0, calories = 280, started = DateTime.now(), userId = 1),
+    Activity(id = 3, description = "Cycling", duration = 90.0, calories = 220, started = DateTime.now(), userId = 2)
 )
 
 val bmies = arrayListOf<Bmi>(

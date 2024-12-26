@@ -2,9 +2,12 @@ package ie.setu.repository
 
 
 import ie.setu.domain.WaterIntake
+import ie.setu.domain.db.Water
+import ie.setu.domain.repository.WaterDAO
 import ie.setu.helpers.*
 import org.joda.time.DateTime
 import org.jetbrains.exposed.sql.Database
+
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeAll
@@ -28,6 +31,8 @@ class WaterDAOTest {
         }
     }
 
+
+
     @Nested
     inner class CreatWater {
 
@@ -36,8 +41,10 @@ class WaterDAOTest {
 
             transaction {
                 //Arrange - create and populate tables with three users and three Water
+                val userDAO = populateUserTable()
                 val WaterDAO = populateWaterIntake()
                 //Act & Assert
+                val test = WaterDAO.getAll().size
                 assertEquals(3, WaterDAO.getAll().size)
                 assertEquals(Water1, WaterDAO.getWaterIntake(Water1.id))
                 assertEquals(Water2, WaterDAO.getWaterIntake(Water2.id))
