@@ -68,22 +68,8 @@ jobs:
           cache: 'maven'
       - name: Maven Verify
         run: mvn -B clean verify
-        
-        
-  deploy:
-    name: Railway Deploy
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Install Railway
-        run: npm i -g @railway/cli
-      - name: Deploy to Railway
-        run: railway up --service ${{ secrets.RAILWAY_SERVICE }}
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      # Create Artifact - Jar Builds 
+    
+          # Create Artifact - Jar Builds 
       - name: Jar Builds
         uses: actions/upload-artifact@v4.4.2
         with:
@@ -103,5 +89,5 @@ jobs:
         run: railway up --service ${{ secrets.RAILWAY_SERVICE }}
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-
+    
+      
