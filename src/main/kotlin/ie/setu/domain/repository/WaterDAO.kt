@@ -59,14 +59,30 @@ class WaterDAO {
         }
     }
 
-    fun waterUpdatebyId(id: Int, waterIntake: WaterIntake) {
+    fun waterUpdatebyId(id: Int, waterIntake: WaterIntake): WaterIntake? {
         return transaction {
             Water.update({ Water.id eq id }) {
                 it[userid] = waterIntake.userid
                 it[litres] = waterIntake.litres
                 it[dateofdrinking] = waterIntake.dateofdrinking
             }
+            Water.selectAll().where { Water.id eq id }
+                .mapNotNull { rowToWaterIntake(it) }
+                .singleOrNull()
         }
     }
+
+
+    private fun rowToWaterIntake(row: ResultRow): WaterIntake {
+        return WaterIntake(
+            id = row[Water.id],
+            litres = row[Water.litres],
+            dateofdrinking = row[Water.dateofdrinking],
+            userid = row[Water.userid]
+        )
+    }
+
+
+
 
 }

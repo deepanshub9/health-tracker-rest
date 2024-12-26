@@ -12,7 +12,7 @@
     <div class="card bg-light mb-3">
       <div class="card-header">
         <div class="row">
-          <div class="col-6"> Timeline </div>
+          <div class="col-6"> Timeline</div>
           <div class="col" align="right">
             <button rel="tooltip" title="Add"
                     class="btn shadow-none border-0" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -33,14 +33,16 @@
             <div class="modal-body">
               <form ref="myForm">
                 <div class="form-group">
-                  <label for="inpWater">Water Intake (Litres)</label>
-                  <input type="text" class="form-control" id="inpWater" v-model="formData.litres" placeholder="Enter your water intake...">
+                  <label for="inpWater">Water Intake(Litres)</label>
+                  <input type="text" class="form-control" id="inpWater" v-model="formData.litres"
+                         placeholder="Enter your water intake...">
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" @click="addWater();">Save changes</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" @click="addWater();">Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -51,9 +53,16 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalTitle">{{ new Date(currentDate).toLocaleDateString('en-us', { weekday: "long", year:"numeric", month:"short", day:"numeric"}) }}</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
+              <h5 class="modal-title" id="modalTitle">{{
+                  new Date(currentDate).toLocaleDateString('en-us', {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                  })
+                }}</h5> &nbsp;&nbsp;&nbsp;
+              <button type="button" class="close" data-bs-dismiss="modal">
+                <span aria-hidden="true"><i class="fa-solid fa-x" style="color: #63E6BE;"></i></span>
               </button>
             </div>
             <div class="modal-body">
@@ -65,8 +74,10 @@
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" data-dismiss="modal" class="btn btn-primary" @click="updateWater(currentId, currentDate);">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary"
+                      @click="updateWater(currentId, currentDate);">Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -77,9 +88,17 @@
           <tbody>
           <tr>
             <th scope="row">{{ w.litres }} L</th>
-            <td>{{ new Date(w.dateofdrinking).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) }}</td>
+            <td>{{
+                new Date(w.dateofdrinking).toLocaleDateString('en-us', {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric"
+                })
+              }}
+            </td>
             <td class="float-right">
-              <button rel="tooltip" title="Update" @click="getData(w)" data-bs-toggle="modal" data-bs-target="#updateModal"
+              <button rel="tooltip" title="Update" @click="getData(w)" data-bs-toggle="modal"
+                      data-bs-target="#updateModal"
                       class="btn btn-info btn-simple btn-link">
                 <i class="far fa-save" aria-hidden="true"></i>
               </button>
@@ -115,10 +134,14 @@ app.component("user-water", {
           if (this.water.length) {
             const ctx = document.getElementById('myChart');
             for (item of this.water) {
-              this.dates.push(new Date(item.dateofdrinking).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}));
+              this.dates.push(new Date(item.dateofdrinking).toLocaleDateString('en-us', {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              }));
               this.litres.push(item.litres);
             }
-            this.dates.sort(function(a, b) {
+            this.dates.sort(function (a, b) {
               return new Date(a) - new Date(b);
             });
             new Chart(ctx, {
@@ -162,6 +185,7 @@ app.component("user-water", {
     getData: function (w) {
       this.currentId = w.id;
       this.currentDate = w.dateofdrinking;
+      this.formData.litres = w.litres;
     },
     addWater: function () {
       const userId = this.$javalin.pathParams["user-id"];
@@ -171,34 +195,54 @@ app.component("user-water", {
         dateofdrinking: new Date().toISOString(),
         userid: userId
       })
-          .then(response => this.water.push(response.data))
-          .catch(error => console.log(error));
+          .then(response => {
+            this.water.push(response.data);
+            this.formData.litres = "";
+            $('#myModal').modal('hide');
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
     },
     updateWater: function (id, date) {
+      const userId = this.$javalin.pathParams["user-id"];
       const url = `/api/water/${id}`;
       axios.patch(url, {
         litres: parseFloat(this.formData.litres),
         dateofdrinking: date,
+        userid: userId
       })
           .then(response => {
             const index = this.water.findIndex(w => w.id === id);
-            if (index !== -1) this.$set(this.water, index, response.data);
+            if (index !== -1) {
+              this.$set(this.water, index, response.data);
+            }
+            this.formData.litres = "";
+            $('#updateModal').modal('hide');
           })
-          .catch(error => console.log(error));
+          .catch(error => {
+            console.log(error)
+          });
     },
     deleteWater: function (water, index) {
       if (confirm('Are you sure you want to delete this record?')) {
         const url = `/api/water/${water.id}`;
         axios.delete(url)
-            .then(() => this.water.splice(index, 1))
-            .catch(error => console.log(error));
+            .catch(function (error) {
+              console.log(error)
+            });
       }
     },
   },
+  resetForm: function () {
+    this.formData.litres= null;
+  },
+
 });
 </script>
 <style>
-.card-header{
+.card-header {
   background-color: #e0bcf8 !important;
 }
 </style>
