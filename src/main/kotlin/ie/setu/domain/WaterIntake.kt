@@ -4,7 +4,7 @@ import org.joda.time.DateTime
 
 
 data class WaterIntake(
-    val id: Int,
+    var id: Int,
     var litres: Double,
     var dateofdrinking: DateTime,
     var userid: Int

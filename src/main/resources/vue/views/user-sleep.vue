@@ -12,8 +12,7 @@
     <div class="card bg-light mb-3">
       <div class="card-header">
         <div class="row">
-          <div class="col-6"> Timeline </div>
-
+          <div class="col-6"> Timeline</div>
 
           <div class="col" align="right">
             <button rel="tooltip" title="Add"
@@ -37,13 +36,15 @@
               <form ref="myForm">
                 <div class="form-group">
                   <label for="inpSleep">Sleep Duration(Hour)</label>
-                  <input type="text" class="form-control" id="inpSleep" v-model="formData.duration" placeholder="Enter your sleephr...">
+                  <input type="text" class="form-control" id="inpSleep" v-model="formData.duration"
+                         placeholder="Enter your sleephr...">
                 </div>
               </form>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" @click="addSleep();">Save changes</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary" @click="addSleep();">Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -55,22 +56,31 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="modalTitle">{{new Date(currentDate).toLocaleDateString('en-us', { weekday: "long", year:"numeric", month:"short", day:"numeric"})}}</h5>
-              <button type="button" class="close" data-dismiss="modal">
-                <span aria-hidden="true">&times;</span>
+              <h5 class="modal-title" id="modalTitle">{{
+                  new Date(currentDate).toLocaleDateString('en-us', {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric"
+                  })
+                }}</h5> &nbsp;&nbsp;&nbsp;
+              <button type="button" class="close" data-bs-dismiss="modal">
+                <span aria-hidden="true"><i class="fa-solid fa-x" style="color: #63E6BE;"></i></span>
               </button>
             </div>
             <div class="modal-body">
               <form>
                 <div class="form-group">
-                  <label for="inpSleep">Enter new Sleep Duration</label>
+                  <label for="inpSleep">Enter New Sleep Duration(Hrs)</label>
                   <input type="text" class="form-control" id="inpSleep" v-model="formData.duration">
                 </div>
               </form>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" data-dismiss="modal" class="btn btn-primary" @click="updateSleep(currentId, currentDate);">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="resetForm">Close</button>
+              <button type="button" data-bs-dismiss="modal" class="btn btn-primary "
+                      @click="updateSleep(currentId, currentDate);">Save changes
+              </button>
             </div>
           </div>
         </div>
@@ -82,9 +92,13 @@
           <tbody>
           <tr>
             <th scope="row">{{ w.duration }} Hrs</th>
-            <td>{{ new Date(w.date).toLocaleDateString('en-us', {  year:"numeric", month:"short", day:"numeric"}) }}</td>
+            <td>{{
+                new Date(w.date).toLocaleDateString('en-us', {year: "numeric", month: "short", day: "numeric"})
+              }}
+            </td>
             <td class="float-right">
-              <button rel="tooltip" title="Update" @click=getData(w) data-bs-toggle="modal" data-bs-target="#updateModal"
+              <button rel="tooltip" title="Update" @click=getData(w) data-bs-toggle="modal"
+                      data-bs-target="#updateModal"
                       class="btn btn-info btn-simple btn-link"
               >
                 <i class="far fa-save" aria-hidden="true"></i>
@@ -106,7 +120,7 @@
 </template>
 
 <script>
-app.component("user-sleep",{
+app.component("user-sleep", {
   template: "#user-sleep",
   data: () => ({
     sleep: [],
@@ -121,13 +135,19 @@ app.component("user-sleep",{
     axios.get(`/api/sleep/users/${userId}`)
         .then(res => {
           this.sleep = res.data
-          if(this.sleep.length) {
+          if (this.sleep.length) {
             const ctx = document.getElementById('myChart');
+            this.dates = [];
+            this.duration = [];
             for (item of this.sleep) {
-              this.dates.push(new Date(item.date).toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) )
+              this.dates.push(new Date(item.date).toLocaleDateString('en-us', {
+                year: "numeric",
+                month: "short",
+                day: "numeric"
+              }))
               this.duration.push(item.duration)
             }
-            this.dates.sort(function(a, b) {
+            this.dates.sort(function (a, b) {
               return new Date(a) - new Date(b);
             });
             new Chart(ctx, {
@@ -172,9 +192,9 @@ app.component("user-sleep",{
   methods: {
     getData: function (w) {
 
-      this.currentId=w.id;
-      this.currentDate=w.date;
-
+      this.currentId = w.id;
+      this.currentDate = w.date;
+      this.formData.duration = w.duration;
     },
     addSleep: function () {
       const userId = this.$javalin.pathParams["user-id"];
@@ -185,27 +205,37 @@ app.component("user-sleep",{
             date: new Date().toISOString(),
             userid: userId
           })
-          .then(response =>
-              this.sleep.push(response.data))
+
+          .then(response => {
+            this.sleep.push(response.data);
+            this.formData.duration = "";
+            $('#myModal').modal('hide');
+          })
           .catch(error => {
             console.log(error)
           })
 
     },
     updateSleep: function (id, date) {
+      const userId = this.$javalin.pathParams["user-id"];
       const url = `/api/sleep/${id}`
       axios.patch(url,
           {
             duration: parseFloat(this.formData.duration),
             date: date,
+            userid: userId
           })
           .then(response => {
             const index = this.sleep.findIndex(s => s.id === id);
-            if (index !== -1) this.$set(this.sleep, index, response.data);
+            if (index !== -1) {
+              this.$set(this.sleep, index, response.data);
+            }
+            this.formData.duration = "";
+            $('#updateModal').modal('hide');
           })
           .catch(error => {
             console.log(error)
-          })
+          });
     },
     deleteSleep: function (sleep, index) {
       if (confirm('Are you sure you want to delete?')) {
@@ -220,6 +250,9 @@ app.component("user-sleep",{
     },
   },
 
+  resetForm: function () {
+    this.formData.duration = null;
+  },
 
 
 });
@@ -228,7 +261,7 @@ app.component("user-sleep",{
 </script>
 
 <style>
-.card-header{
+.card-header {
   background-color: #e0bcf8 !important;
 }
 </style>
