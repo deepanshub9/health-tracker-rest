@@ -31,7 +31,7 @@ object HealthTipController {
             ctx.json(act)
             ctx.status(200)
         } else {
-            ctx.status(400)
+            ctx.status(404)
         }
 
     }
@@ -53,13 +53,14 @@ object HealthTipController {
     }
 
     fun updateHealthTip(ctx: Context) {
-        val mapper = jacksonObjectMapper()
-        val healthTip = mapper.readValue<HealthTip>(ctx.body())
-        healthTipDAO.updateHealthTip(healthTip.id, healthTip)
-        ctx.status(200)
-        ctx.json(healthTip)
-
+        val healthTip = healthTipDAO.getHealthTipbyId(ctx.pathParam("hth-id").toInt())
+        if (healthTip != null) {
+            val mapper = jacksonObjectMapper()
+            val updatedHealthTip = mapper.readValue<HealthTip>(ctx.body())
+            ctx.json(healthTipDAO.updateHealthTip(healthTip.id, updatedHealthTip))
+        }
     }
+
 
 
 }

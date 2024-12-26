@@ -16,8 +16,7 @@ class HealthTipDAO {
     fun addHealthTip(healthTip: HealthTip) {
         return transaction {
             HealthTips.insert {
-                it[id] = healthTip.id
-                it[tips] = healthTip.tips
+               it[tips] = healthTip.tips
             } get HealthTips.id
         }
     }
@@ -53,16 +52,15 @@ class HealthTipDAO {
     fun save(healthTip: HealthTip) {
         return transaction {
             HealthTips.insert {
-                it[id] = healthTip.id
-                it[tips] = healthTip.tips
+                 it[tips] = healthTip.tips
             }
         }
     }
 
-    fun updateHealthTip(healthTip1: Int, healthTip: HealthTip) {
-        return transaction {
-            HealthTips.update({ HealthTips.id eq healthTip.id }) {
-                it[id] = healthTip.id
+
+    fun updateHealthTip(id: Int, healthTip: HealthTip) {
+        transaction {
+            HealthTips.update({ HealthTips.id eq id }) {
                 it[tips] = healthTip.tips
             }
         }
