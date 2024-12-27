@@ -2,7 +2,7 @@ name: Maven CI/CD with Trivy and Deployment
 on:
   push:
     branches:
-      - main
+      - master
   pull_request: null
 jobs:
   package:
