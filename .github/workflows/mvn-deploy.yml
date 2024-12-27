@@ -34,10 +34,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install Trivy
         run: |
-          curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh
-      - name: Trivy Vulnerability Scan
-        run: |
-          ./trivy fs . --exit-code 1 --severity HIGH,CRITICAL
+          curl -sfL https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz | tar zxvf - -C /usr/local/bin
+      - name: Verify Trivy Installation
+        run: which trivy
+      - name: Run Trivy Scan
+        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
 
   documentation: 
     runs-on: ubuntu-latest
