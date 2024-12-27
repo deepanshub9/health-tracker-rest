@@ -1,49 +1,41 @@
 name: Maven CI/CD with Trivy and Deployment
-
-on:
+'on':
   push:
     branches:
       - main
-  pull_request:
-
+  pull_request: null
 jobs:
-  # Maven Package Job
   package:
     name: Maven Package (no tests)
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
-          cache: 'maven'
+          cache: maven
       - name: Maven Package
         run: mvn -B clean package -DskipTests
-
-      # Create Artifact - Jar Builds
       - name: Jar Builds
         uses: actions/upload-artifact@v4.4.2
         with:
           name: Jar with Builds
           path: target/*.jar
-
-  # Trivy File Scan Job
   trivy-file-scan:
     name: Trivy File Scan
     needs: package
     runs-on: ubuntu-latest
     container:
-      image: aquasec/trivy:latest
+    image: 'aquasec/trivy:latest'
     steps:
-      - uses: actions/checkout@v4
-      - name: Maven Build
-        run: mvn clean install -DskipTests
-      - name: Trivy Vulnerability Scan
-        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed --skip-dirs target
-
-  # Documentation Generation Job
+    - uses: actions/checkout@v4
+    - name: Maven Build
+      run: mvn clean install -DskipTests
+    - name: Trivy Vulnerability Scan
+      run: >-
+        trivy fs ./target --exit-code 1 --severity HIGH,CRITICAL
+        --ignore-unfixed
   documentation:
     name: Generate Documentation
     needs: package
@@ -51,14 +43,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Generate KDoc Documentation
-        run: mvn -B dokka:dokka
+        run: 'mvn -B dokka:dokka'
       - name: Archive KDoc Documentation
         uses: actions/upload-artifact@v4.4.2
         with:
           name: KDoc Documentation Site
           path: target/dokka
-
-  # Maven Tests Job
   test:
     name: Run Maven Tests
     needs: package
@@ -67,13 +57,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          distribution: 'temurin'
+          distribution: temurin
           java-version: '17'
-          cache: 'maven'
+          cache: maven
       - name: Run Tests
         run: mvn -B clean verify
-
-  # Deployment Job
   deploy:
     name: Railway Deployment
     needs: test
@@ -83,6 +71,6 @@ jobs:
       - name: Install Railway CLI
         run: npm i -g @railway/cli
       - name: Deploy to Railway
-        run: railway up --service ${{ secrets.RAILWAY_SERVICE }}
+        run: 'railway up --service ${{ secrets.RAILWAY_SERVICE }}'
         env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+          RAILWAY_TOKEN: '${{ secrets.RAILWAY_TOKEN }}'
