@@ -1,5 +1,5 @@
 name: Maven CI/CD with Trivy and Deployment
-'on':
+on:
   push:
     branches:
       - main
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
           cache: maven
       - name: Maven Package
         run: mvn -B clean package -DskipTests
@@ -22,20 +22,20 @@ jobs:
         with:
           name: Jar with Builds
           path: target/*.jar
-  trivy-file-scan:
-    name: Trivy File Scan
+
+  trivy-scan:
+    name: Trivy Scan
     needs: package
     runs-on: ubuntu-latest
-    container:
-    image: 'aquasec/trivy:latest'
     steps:
-    - uses: actions/checkout@v4
-    - name: Maven Build
-      run: mvn clean install -DskipTests
-    - name: Trivy Vulnerability Scan
-      run: >-
-        trivy fs ./target --exit-code 1 --severity HIGH,CRITICAL
-        --ignore-unfixed
+      - uses: actions/checkout@v4
+      - name: Download and Install Trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin
+      - name: Verify Trivy Installation
+        run: trivy --version
+      - name: Trivy Vulnerability Scan
+        run: trivy fs ./target --exit-code 1 --severity HIGH,CRITICAL
+
   documentation:
     name: Generate Documentation
     needs: package
@@ -43,12 +43,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Generate KDoc Documentation
-        run: 'mvn -B dokka:dokka'
+        run: "mvn -B dokka:dokka"
       - name: Archive KDoc Documentation
         uses: actions/upload-artifact@v4.4.2
         with:
           name: KDoc Documentation Site
           path: target/dokka
+
   test:
     name: Run Maven Tests
     needs: package
@@ -58,10 +59,11 @@ jobs:
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
-          java-version: '17'
+          java-version: "17"
           cache: maven
       - name: Run Tests
         run: mvn -B clean verify
+
   deploy:
     name: Railway Deployment
     needs: test
@@ -71,6 +73,6 @@ jobs:
       - name: Install Railway CLI
         run: npm i -g @railway/cli
       - name: Deploy to Railway
-        run: 'railway up --service ${{ secrets.RAILWAY_SERVICE }}'
+        run: "railway up --service ${{ secrets.RAILWAY_SERVICE }}"
         env:
-          RAILWAY_TOKEN: '${{ secrets.RAILWAY_TOKEN }}'
+          RAILWAY_TOKEN: "${{ secrets.RAILWAY_TOKEN }}"
