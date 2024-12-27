@@ -116,6 +116,7 @@
 </template>
 
 <script>
+
 app.component("user-water", {
   template: "#user-water",
   data: () => ({
@@ -209,9 +210,11 @@ app.component("user-water", {
       const userId = this.$javalin.pathParams["user-id"];
       const url = `/api/water/${id}`;
       axios.patch(url, {
+        id: id,
         litres: parseFloat(this.formData.litres),
         dateofdrinking: date,
         userid: userId
+
       })
           .then(response => {
             const index = this.water.findIndex(w => w.id === id);
@@ -220,6 +223,7 @@ app.component("user-water", {
             }
             this.formData.litres = "";
             $('#updateModal').modal('hide');
+
           })
           .catch(error => {
             console.log(error)
