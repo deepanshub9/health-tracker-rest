@@ -12,6 +12,9 @@ import org.jetbrains.exposed.sql.update
 
 class UserDAO {
 
+    /**
+     * Manages the database transactions and returns the results of the transactions
+     */
 
     fun getAll(): ArrayList<User> {
         val userList: ArrayList<User> = arrayListOf()
@@ -47,6 +50,10 @@ class UserDAO {
         }
     }
 
+    /**
+     * Adds a [user] to the Users table.
+     * @return the id of the user following the add.
+     */
     fun save(user: User) :Int {
         return transaction {
             Users.insert {
