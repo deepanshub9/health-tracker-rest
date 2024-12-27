@@ -25,28 +25,29 @@ jobs:
           name: Jar with Builds
           path: target/*.jar    
 
-  trivy-scan:
-    name: Trivy Scan
-    needs: package
-    runs-on: ubuntu-latest
+trivy-scan:
+  name: Trivy Scan
+  needs: package
+  runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
+  steps:
+    - uses: actions/checkout@v4
+    
+    # Download and Install Trivy
+    - name: Download Trivy
+      run: |
+        curl -LO https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux_x86_64.tar.gz
+        tar zxvf trivy_Linux_x86_64.tar.gz -C /usr/local/bin
+        rm -f trivy_Linux_x86_64.tar.gz
 
-      - name: Install Trivy
-        run: |
-          curl -LO https://github.com/aquasecurity/trivy/releases/latest/download/trivy_$(uname -s)_$(uname -m).tar.gz
-          tar zxvf trivy_$(uname -s)_$(uname -m).tar.gz -C /usr/local/bin
-          rm -f trivy_$(uname -s)_$(uname -m).tar.gz
+    # Verify Installation
+    - name: Verify Trivy Installation
+      run: trivy --version
 
-      - name: Verify Trivy Installation
-        run: |
-          ls -l /usr/local/bin/trivy
-          /usr/local/bin/trivy --version
-
-      - name: Run Trivy Scan
-        run: |
-          /usr/local/bin/trivy fs . --exit-code 0 --severity HIGH,CRITICAL
+    # Perform the File System Scan
+    - name: Trivy Vulnerability Scan
+      run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
+ 
 
   documentation: 
     runs-on: ubuntu-latest
