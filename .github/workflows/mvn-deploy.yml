@@ -1,11 +1,15 @@
-name: Deploy to Railway
+name: Maven CI/CD with Trivy and Deployment
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-
+  # Maven Package Job
   package:
-    name: Maven Package (no tests) 
+    name: Maven Package (no tests)
     runs-on: ubuntu-latest
 
     steps:
@@ -17,62 +21,48 @@ jobs:
           cache: 'maven'
       - name: Maven Package
         run: mvn -B clean package -DskipTests
-        
-      # Create Artifact - Jar Builds 
+
+      # Create Artifact - Jar Builds
       - name: Jar Builds
         uses: actions/upload-artifact@v4.4.2
         with:
           name: Jar with Builds
-          path: target/*.jar    
+          path: target/*.jar
 
-trivy-scan:
-  name: Trivy Scan
-  needs: package
-  runs-on: ubuntu-latest
-
-  steps:
-    - uses: actions/checkout@v4
-    
-    # Download and Install Trivy
-    - name: Download Trivy
-      run: |
-        curl -LO https://github.com/aquasecurity/trivy/releases/latest/download/trivy_Linux_x86_64.tar.gz
-        tar zxvf trivy_Linux_x86_64.tar.gz -C /usr/local/bin
-        rm -f trivy_Linux_x86_64.tar.gz
-
-    # Verify Installation
-    - name: Verify Trivy Installation
-      run: trivy --version
-
-    # Perform the File System Scan
-    - name: Trivy Vulnerability Scan
-      run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
- 
-
-  documentation: 
-    runs-on: ubuntu-latest
+  # Trivy File Scan Job
+  trivy-file-scan:
+    name: Trivy File Scan
     needs: package
+    runs-on: ubuntu-latest
+    container:
+      image: aquasec/trivy:latest
     steps:
-
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it 
       - uses: actions/checkout@v4
+      - name: Maven Build
+        run: mvn clean install -DskipTests
+      - name: Trivy Vulnerability Scan
+        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL --ignore-unfixed --skip-dirs target
 
-      # Runs the Maven dokka task
-      - name: Dokka with Maven
+  # Documentation Generation Job
+  documentation:
+    name: Generate Documentation
+    needs: package
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate KDoc Documentation
         run: mvn -B dokka:dokka
-
-      # Builds a zip file with the KDoc generated website in it 
       - name: Archive KDoc Documentation
         uses: actions/upload-artifact@v4.4.2
         with:
           name: KDoc Documentation Site
-          path: target/dokka  
+          path: target/dokka
 
+  # Maven Tests Job
   test:
-    name: Maven Tests
+    name: Run Maven Tests
     needs: package
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
@@ -80,16 +70,17 @@ trivy-scan:
           distribution: 'temurin'
           java-version: '17'
           cache: 'maven'
-      - name: Maven Verify
+      - name: Run Tests
         run: mvn -B clean verify
 
+  # Deployment Job
   deploy:
-    name: Railway Deploy
+    name: Railway Deployment
     needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Railway
+      - name: Install Railway CLI
         run: npm i -g @railway/cli
       - name: Deploy to Railway
         run: railway up --service ${{ secrets.RAILWAY_SERVICE }}
