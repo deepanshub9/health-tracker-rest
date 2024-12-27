@@ -34,7 +34,7 @@ jobs:
       - name: Verify Trivy Installation
         run: trivy --version
       - name: Trivy Vulnerability Scan
-        run: trivy fs ./target --exit-code 1 --severity HIGH,CRITICAL
+        run: trivy fs . --exit-code 1 --severity HIGH,CRITICAL
 
   documentation:
     name: Generate Documentation
