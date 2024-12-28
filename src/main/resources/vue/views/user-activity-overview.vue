@@ -136,10 +136,10 @@ app.component("user-activity-overview", {
             userId: userId
           })
           .then(response => {
-            this.activities.push(response.data)
+            this.activities.unshift(response.data);
             console.log(response);
-            console.log(this.formData);
-            this.hideForm = true;  // Activity form is hide when user submitted data
+            this.hideForm = true;
+            this.formData = {};  // Activity form is hide when user submitted data
           })
           .catch(error => {
             console.log(error)

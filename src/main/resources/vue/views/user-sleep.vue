@@ -209,6 +209,7 @@ app.component("user-sleep", {
           .then(response => {
             this.sleep.push(response.data);
             this.formData.duration = "";
+            this.updateChart();
             $('#myModal').modal('hide');
           })
           .catch(error => {
@@ -231,6 +232,7 @@ app.component("user-sleep", {
               this.$set(this.sleep, index, response.data);
             }
             this.formData.duration = "";
+            this.updateChart();
             $('#updateModal').modal('hide');
           })
           .catch(error => {
@@ -241,14 +243,19 @@ app.component("user-sleep", {
       if (confirm('Are you sure you want to delete?')) {
         const url = `/api/sleep/${sleep.id}`;
         axios.delete(url)
-            .then(() =>
-                this.sleep.splice(index, 1))
+            .then(() => {
+                this.sleep.splice(index, 1);
+        this.updateChart();
+      })
             .catch(function (error) {
               console.log(error)
             });
       }
     },
+
   },
+
+
 
   resetForm: function () {
     this.formData.duration = null;

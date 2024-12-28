@@ -102,6 +102,9 @@ app.component("user-bmi-overview", {
         userId: userId,
       })
           .then(response => {
+            const weight = parseFloat(response.data.weight);
+            const height = parseFloat(response.data.height) / 100;
+            response.data.bmiCalculator = (weight / (height * height)).toFixed(2);
             this.bmiRecords.push(response.data);
             this.hideForm = true;
           })

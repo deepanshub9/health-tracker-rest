@@ -219,7 +219,8 @@ app.component("user-water", {
           .then(response => {
             const index = this.water.findIndex(w => w.id === id);
             if (index !== -1) {
-              this.$set(this.water, index, response.data);
+              this.water[index].litres = response.data.litres;
+              this.water[index].dateofdrinking = response.data.dateofdrinking;
             }
             this.formData.litres = "";
             $('#updateModal').modal('hide');
