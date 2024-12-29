@@ -75,6 +75,9 @@ object ActivityController {
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
             val newactivity = mapper.readValue<Activity>(ctx.body())
             ctx.json(mapper.writeValueAsString(activityDao.updateActivityById(activity.id, newactivity)))
+            ctx.status(200)
+        }else{
+            ctx.status(404)
         }
 
 
