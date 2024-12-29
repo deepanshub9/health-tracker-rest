@@ -22,10 +22,22 @@ Testing: Unit, Selenium, Mocking – It's ensure application reliability and per
 
 
 
+## Getting Started
+
+Follow these simple steps to get the HealthTracker application up and running on your local machine:
+
+1. Clone the repository:
+   ```shell
+   git clone https://github.com/yourusername/healthtrackerrestApp.git
+2. Build the application:
+   ```shell
+   Copy code
+   mvn clean install
+3. Run the application
+
+
 How it works
 The application was made mainly to demo the functionality of Javalin framework.
-
-
 
 The application backend built with:
 
@@ -38,8 +50,15 @@ The application backend built with:
 <li> PostgreSQL as database</li> <br/>
 
 
-Tests: junit Unirest to call endpoints in tests Getting started You need just JVM installed.
 
 The server is configured to start local on The application will be accessible at http://localhost:7001 with API context.
 
-Domain: [https://healthtrackerrest-production-cb60.up.railway.app/](https://health-tracker-rest-production-6ae2.up.railway.app/api/HealthTips)
+Domain: https://health-tracker-rest-production-6ae2.up.railway.app/
+
+
+## Contact
+
+If you have any questions, issues, or feedback, feel free to reach out to us:
+
+- **Email:** deepanshu.b096@gmail.com
+
