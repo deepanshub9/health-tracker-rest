@@ -1,213 +1,222 @@
-package ie.setu.repository
+package ie.setu.controllers
 
+import ie.setu.config.DbConfig
 import ie.setu.domain.Activity
-import ie.setu.domain.db.Activities
-import ie.setu.domain.repository.ActivityDAO
-import ie.setu.helpers.activities
-import ie.setu.helpers.populateActivityTable
-import ie.setu.helpers.populateUserTable
-import org.jetbrains.exposed.sql.Database
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.transactions.transaction
+import ie.setu.domain.User
+import ie.setu.helpers.*
+import ie.setu.utils.jsonToObject
+import kong.unirest.core.HttpResponse
+import kong.unirest.core.JsonNode
+import kong.unirest.core.Unirest
 import org.joda.time.DateTime
-import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.TestInstance
 
-val activity1 = activities[0]
-val activity2 = activities[1]
-val activity3 = activities[2]
 
-class ActivityDAOTest {
-    companion object {
-        // Make a connection to a local, in memory H2 database
-        @BeforeAll
-        @JvmStatic
-        internal fun setupInMemoryDatabaseConnection() {
-            Database.connect("jdbc:h2:mem:test", driver = "org.h2.Driver", user = "root", password = "")
-        }
-    }
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+
+class ActivityControllerTest {
+
+    private val db = DbConfig().getDbConnection()
+    private val app = ServerContainer.instance
+    private val origin = "http://localhost:" + app.port()
 
     @Nested
-    inner class CreateActivities {
+    inner class ReadActivity {
         @Test
-        fun `multiple activities added to the table can be retrieved successfully`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-
-                // Act and Insert
-                assertEquals(3, activityDAO.getAllActivities().size)
-                assertEquals(activity1, activityDAO.getactivitybyId(activity1.id))
-                assertEquals(activity2, activityDAO.getactivitybyId(activity2.id))
-                assertEquals(activity3, activityDAO.getactivitybyId(activity3.id))
+        fun `get all activities from the database returns 200 or 404 response`() {
+            val response = Unirest.get(origin + "/api/activities/").asString()
+            if (response.status == 200) {
+                val retrievedactivities: ArrayList<Activity> = jsonToObject(response.body.toString())
+                assertNotEquals(0, retrievedactivities.size)
+            }
+            else {
+                assertEquals(404, response.status)
             }
         }
-    }
+        @Test
+        fun `get activities by id when user does not exist returns 404 response`() {
 
+            //Arrange - test data for user id
+            val id = -1
+
+            // Act - attempt to retrieve the non-existent user from the database
+            val retrieveResponse = Unirest.get(origin + "/api/activities/${id}").asString()
+
+            // Assert -  verify return code
+            assertEquals(400, retrieveResponse.status)
+        }
+    }
     @Nested
-    inner class ReadActivities {
+    inner class CreateActivities{
         @Test
-        fun `getting all activities from a populated table returns all rows`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                assertEquals(3, activityDAO.getAllActivities().size)
-            }
-        }
-
-        @Test
-        fun `get activity by id that doesnt exist, returns no activity`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                assertEquals(null, activityDAO.getactivitybyId(4))
-            }
-        }
-
-        @Test
-        fun `get all activities over empty table returns none`() {
-            transaction {
-                SchemaUtils.create(Activities)
-                val activityDAO = ActivityDAO()
-
-                assertEquals(0, activityDAO.getAllActivities().size)
-            }
-        }
-
-        @Test
-        fun `get activities by a specific user by userid`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                assertEquals(2, activityDAO.getUserById(1).size)
-            }
-        }
-
-        @Test
-        fun `get activity by user id that has no activities, results in no record returned`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                // Act & Assert
-                assertEquals(0, activityDAO.getUserById(3).size)
-            }
-        }
-
-        @Test
-        fun `get all activities of same id works`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                assertEquals(3, activityDAO.getAllActivities().size)
-            }
+        fun `add a activity with correct details returns a 201 response`(){
+            //Arrange - add the user
+            val addResponse = addUser(users[0].name,"testr296@gmail.com")
+            val useradd = addResponse.body.toString()
+            val addedUser : User = jsonToObject(addResponse.body.toString())
+            val addActivityResponse = addActivity(activities[0].description,activities[0].duration,activities[0].calories,activities[0].started,addedUser.id
+            )
+            assertEquals(201, addActivityResponse.status)
+            deleteUser(addedUser.id)
         }
     }
-
     @Nested
-    inner class DeleteActivities {
+    inner class UpdateActivity{
         @Test
-        fun `delete activity by activity id that exists works`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-
-                // Act & Assert
-                assertEquals(3, activityDAO.getAllActivities().size)
-                activityDAO.deleteActivity(activity3.id)
-                assertEquals(2, activityDAO.getAllActivities().size)
-            }
+        fun `updating a activity when it exists, returns a 200 response`(){
+            val addResponse = addUser(users[0].name,"testj894@gmail.com")
+            val useradd = addResponse.body.toString()
+            val addedUser : User = jsonToObject(addResponse.body.toString())
+            val addActivityResponse = addActivity(activities[0].description,activities[0].duration,activities[0].calories,activities[0].started,addedUser.id
+            )
+            assertEquals(201, addActivityResponse.status)
+            val addedActivity:Activity = jsonToObject(addActivityResponse.body.toString())
+            val activityId = addedActivity.id
+            val updatedActivityResponse = updateActivity(activityId, "dancing", 60.0, activities[0].calories,activities[0].started,addedUser.id)
+            assertEquals(200, updatedActivityResponse.status)
+            val retrievedActivityResponse = retrieveActivityById(activityId)
+            val updatedActivity:Activity = jsonToObject(retrievedActivityResponse.body.toString())
+            assertEquals("dancing", updatedActivity.description)
+            assertEquals(60.0, updatedActivity.duration)
         }
-
         @Test
-        fun `delete activity by activity id that doesnt exist results in no deletion`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
+        fun `updating a activity when it doesn't exist, returns a 404 response`() {
 
-                // Act & Assert
-                assertEquals(3, activityDAO.getAllActivities().size)
-                activityDAO.deleteActivity(4)
-                assertEquals(3, activityDAO.getAllActivities().size)
-            }
+            //Act & Assert - attempt to update the email and name of user that doesn't exist
+            assertEquals(404, updateActivity(-1, activities[0].description,activities[0].duration,activities[0].calories,activities[0].started,-1).status)
         }
-
-        @Test
-        fun `deleting activities when none exist for user id results in no record deletion`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                populateUserTable()
-                val activityDAO = populateActivityTable()
-
-                // Act & Assert
-                assertEquals(3, activityDAO.getAllActivities().size)
-                activityDAO.deleteActivity(4)
-                assertEquals(3, activityDAO.getAllActivities().size)
-            }
-        }
-
-
-        @Test
-        fun `delete all activities of a user results in all activities of a user in table being deleted`() {
-            transaction {
-
-                populateUserTable()
-                val activityDAO = populateActivityTable()
-
-                // Act & Assert
-                assertEquals(3, activityDAO.getAllActivities().size)
-                activityDAO.getUserById(1).forEach { activity ->
-                    activityDAO.deleteActivity(activity.id)
-                }
-                assertEquals(0, activityDAO.getUserById(1).size)
-            }
-        }
-
     }
-
     @Nested
-    inner class UpdateActivity {
+    inner class DeleteActivities{
         @Test
-        fun `update activity of a user results in the record in the table being updated`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-                val activity1updated = Activity(description = "Cycling", duration = 40.0, calories = 101, started = DateTime.now(), userId = 1, id = 1)
-                activityDAO.updateActivityById(activity1updated.id, activity1updated)
-                assertEquals(activity1updated, activityDAO.getactivitybyId(1))
-            }
+        fun `deleting a activity when it doesn't exist, returns a 404 response`() {
+            //Act & Assert - attempt to delete a user that doesn't exist
+            assertEquals(404, deleteActivity(-1).status)
         }
-
         @Test
-        fun `updating non-existant activity in table results in no updates`() {
-            transaction {
-                // Arrange - create and populate tables with three users and three activities
-                val userDAO = populateUserTable()
-                val activityDAO = populateActivityTable()
-
-                // Act & Assert
-                val activity4updated = Activity(
-                    id = 2,
-                    description = "Cycling",
-                    duration = 42.0,
-                    calories = 220,
-                    started = DateTime.now(),
-                    userId = 1,
-                )
-                activityDAO.updateActivityById(4, activity4updated)
-                assertEquals(null, activityDAO.getactivitybyId(4))
-                assertEquals(3, activityDAO.getAllActivities().size)
-            }
+        fun `deleting a activity when it exists, returns a 204 response`(){
+            val addResponse = addUser(users[0].name,"testi210@gmail.com")
+            val useradd = addResponse.body.toString()
+            val addedUser : User = jsonToObject(addResponse.body.toString())
+            val addActivityResponse = addActivity(activities[0].description,activities[0].duration,activities[0].calories,activities[0].started,addedUser.id
+            )
+            val addedActivity:Activity = jsonToObject(addActivityResponse.body.toString())
+            val activityId = addedActivity.id
+            assertEquals(204, deleteActivity(activityId).status)
         }
     }
+
+
+
+
+    //helper function to add a test user to the database
+    private fun addUser (name: String, email: String): HttpResponse<JsonNode> {
+        return Unirest.post(origin + "/api/users")
+            .body("{\"name\":\"$name\", \"email\":\"$email\"}")
+            .asJson()
+    }
+    private fun addActivity(
+                             description: String,
+                             duration: Double,
+                             calories: Int,
+                             started: DateTime,
+                             userId: Int
+    ): HttpResponse<JsonNode> {
+        return Unirest.post(origin + "/api/activities")
+            .body("{\"description\":\"$description\", \"duration\":\"$duration\", \"calories\":\"$calories\", \"started\":\"$started\", \"userId\":\"$userId\" }")
+            .asJson()
+    }
+    private fun retrieveActivityById(id: Int) : HttpResponse<JsonNode> {
+        return Unirest.get(origin+"/api/activities/$id").asJson()
+    }
+
+    //helper function to delete a test user from the database
+    private fun deleteUser (id: Int): HttpResponse<String> {
+        return Unirest.delete(origin + "/api/users/$id").asString()
+    }
+    private fun updateActivity(
+        id: Int,
+        description: String,
+        duration: Double,
+        calories: Int,
+        started: DateTime,
+        userId: Int
+    ): HttpResponse<JsonNode> {
+        return Unirest.patch(origin + "/api/activities/$id")
+            .body("{\"description\":\"$description\", \"duration\":\"$duration\", \"calories\":\"$calories\", \"started\":\"$started\", \"userId\":\"$userId\" }")
+            .asJson()
+    }
+    //helper function to delete a test user from the database
+    private fun deleteActivity (id: Int): HttpResponse<String> {
+        return Unirest.delete(origin + "/api/activities/$id").asString()
+    }
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
